@@ -1,0 +1,175 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../css/fonts/Lato2OFL/Lato-Medium.ttf') format('truetype')
+         
+}
+
+@font-face {
+    font-family: 'LatoL';
+    src: url('../css/fonts/Lato2OFL/Lato-Light.ttf') format('truetype')
+         
+}
+
+
+.bar .button.back-button {
+
+    color: white !important;
+}
+
+.userResult{
+	    width: 70%;
+    margin-left: 15%;
+    margin-top: 25px;
+    white-space: nowrap;
+}
+
+.userResult img{
+	vertical-align: middle;
+}
+
+.userResult span{
+
+	font-size: 29px;
+    font-family: Lato2;
+    letter-spacing: 2px;
+    color: #00517f;
+    text-decoration: underline;
+    text-underline-position: under;
+
+
+}
+@font-face {
+    font-family: 'Lato2';
+    src: url('../css/fonts/Lato2OFL/Lato-ThinItalic.ttf') format('truetype')
+         
+}
+
+.ssdd{
+    color: #0090b4 !important;
+    font-family: Lato;
+    border: none !important;
+    text-align: left;
+    margin-bottom: 6px;
+    font-size: 15px;
+    white-space: normal;
+}
+.bntH{
+
+
+background-color: #0090b4;
+    width: 90%;
+    height: 50px;
+    line-height: 0px !important;
+    margin-top: 35px;
+    border: none !important;
+    border-radius: 2px;
+
+
+}
+
+.sp1{
+       color: white;
+    font-family: LatoL;
+    margin-right: 7px;
+    font-size: 16px;
+
+
+}
+
+.sp2{
+
+        font-size: 34px;
+    letter-spacing: 1px;
+    font-family: LatoL;
+    color: white;
+
+
+}
+
+.btnSett2{
+        width: 100%;
+    font-size: 21px;
+    font-family: LatoL;
+    color: #0090b4;
+    margin-top: 50px;
+
+}
+.btnSett{
+
+    width: 100%;
+    font-size: 24px;
+    font-family: LatoL;
+    color: #0090b4;
+    margin-top: 25px;
+
+
+}
+
+/* Empty. Add your own CSS if you like */
+.tabs{background-color: #0090b4 !important}
+
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+    color: white !important;
+    background: #00517f !important;
+    }
+
+
+    ion-tabs.tabs-color-active-positive .tab-item {
+    color: white !important;
+}
+
+
+
+.tab-item .icon {
+    height: 47px !important;
+    line-height: 46px !important;
+}
+
+
+.bar-cust{
+	background-color: #0090b4 !important;
+	color: white;
+	    height: 50px !important;
+}
+
+
+.bar .title {
+
+    height: 50px !important;
+
+    font-size: 20px !important;
+
+    line-height: 50px !important;
+          font-family: Lato;
+            letter-spacing: 2px;
+}
+
+
+
+.iList{
+
+	    text-align: center;
+    color: white;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.tituloHome{
+
+	    text-align: center;
+    color: white;
+    font-size: 16px;
+padding-top: 15px;
+    padding-bottom: 15px;
+        font-family: Lato;
+            letter-spacing: 1px;
+}
+
+.notiBtn{
+width: 100%;
+    padding-top: 28px;
+    padding-bottom: 18px;
+    margin-top: 25px;
+  
+}
