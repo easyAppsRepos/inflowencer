@@ -37,6 +37,7 @@ function loadErrorCallBack(params) {
  
      console.log('her5');
  console.log(window.location.href );
+  console.log(params);
  
     var scriptErrorMesssage =
        "alert('Sorry we cannot open that page. Message from the server is : "
