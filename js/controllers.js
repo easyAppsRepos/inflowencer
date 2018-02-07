@@ -12,13 +12,73 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope) {})
 .controller('RequestCtrl', function($scope) {
 
+
+var refff;
+
+function loadStartCallBack() {
+ 
+ console.log('her');
+ console.log(window.location.href );
+   // $('#status-message').text("loading please wait ...");
+ 
+}
+
+
+function loadStopCallBack() {
+ 
+ console.log('her2');
+ console.log(window.location.href );
+   // $('#status-message').text("loading please wait ...");
+ 
+}
+
+
+function loadErrorCallBack(params) {
+ 
+     console.log('her5');
+ console.log(window.location.href );
+ 
+    var scriptErrorMesssage =
+       "alert('Sorry we cannot open that page. Message from the server is : "
+       + params.message + "');"
+ 
+    refff.executeScript({ code: scriptErrorMesssage }, executeScriptCallBack);
+ 
+    refff.close();
+ 
+    refff = undefined;
+ 
+}
+
+
+function executeScriptCallBack(params) {
+ 
+  console.log('her4');
+ console.log(window.location.href );
+
+    if (params[0] == null) {
+ 
+       console.log('4s3');
+    }
+ 
+}
+ 
+
+
+
     $scope.openPage = function(link){
 
   if(link == null || link == 'null' || link == 'undefinded'){console.log('nolink')}
 
   else{
     //  window.open(link, '_blank', 'location=yes'); return false;
-      var refff = cordova.InAppBrowser.open(link, '_blank', 'location=no');
+      refff = cordova.InAppBrowser.open(link, '_blank', 'location=no');
+
+      refff.addEventListener('loadstart', loadStartCallBack);
+       refff.addEventListener('loadstop', loadStopCallBack);
+              refff.addEventListener('loaderror', loadErrorCallBack);
+
+
 
   }  
 }
