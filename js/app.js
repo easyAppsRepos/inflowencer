@@ -38,6 +38,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
 
+
+if(localStorage.getItem('tokInfl') == null || 
+            localStorage.getItem('tokInfl') == 'null' || 
+            localStorage.getItem('tokInfl') == 'undefined' || 
+            localStorage.getItem('tokInfl') == undefined){
+
+        //console.log(localStorage.getItem('userInfoTS'));
+      $urlRouterProvider.otherwise('/login');
+
+        }
+        else{
+           // console.log(localStorage.getItem('userInfoTS'));
+       $urlRouterProvider.otherwise('/tab/dsash');
+        // $urlRouterProvider.otherwise("/login");
+        }
+
+
+
   $stateProvider
 
   // setup an abstract state for the tabs directive
@@ -191,6 +209,6 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+ // $urlRouterProvider.otherwise('/tab/dash');
 
 });
