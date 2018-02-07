@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
 })
 .controller('HomeCtrl', function($scope) {})
 .controller('RequestCtrl', function($scope) {})
-.controller('loginCtrlI', function($scope, $state) {
+.controller('loginCtrlI', function($scope, $state, api, $ionicLoading) {
 
 
 var refff;
@@ -62,7 +62,7 @@ function loadErrorCallBack(params) {
       //$scope.chats = events.data || [];
     }).finally(function () {
       $ionicLoading.hide();
-      
+
     });
 
  }
