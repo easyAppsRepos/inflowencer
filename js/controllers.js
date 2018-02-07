@@ -10,7 +10,8 @@ angular.module('starter.controllers', [])
 
 })
 .controller('HomeCtrl', function($scope) {})
-.controller('RequestCtrl', function($scope) {
+.controller('RequestCtrl', function($scope) {})
+.controller('loginCtrlI', function($scope, $state) {
 
 
 var refff;
@@ -39,7 +40,24 @@ function loadErrorCallBack(params) {
  console.log(window.location.href );
   console.log(params);
  
-    var scriptErrorMesssage =
+
+ if(params.code==-1004 || params.code=='-1004'){
+
+
+    var str = params.url;
+    var res = str.split("=");
+
+    var accesT=res[1];
+    window.localStorage.setItem( 'tokInfl', accesT);
+    refff.close();
+    refff = undefined;
+    $state.go('tab.dash');
+
+ }
+ else{
+
+  
+      var scriptErrorMesssage =
        "alert('Sorry we cannot open that page. Message from the server is : "
        + params.message + "');"
  
@@ -48,6 +66,13 @@ function loadErrorCallBack(params) {
     refff.close();
  
     refff = undefined;
+
+
+ }
+
+
+
+
  
 }
 

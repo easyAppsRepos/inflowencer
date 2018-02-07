@@ -61,7 +61,7 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
     .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'RequestCtrl'
+    controller: 'loginCtrlI'
   })
 
     .state('instalog', {
