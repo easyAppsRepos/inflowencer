@@ -26,7 +26,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
  .constant("serverConfig", {
         //"url": "http://localhost:80",
-        "url": "https://",
+        "url": "http://18.219.34.101:3000",
         "imageStorageURL" : 'https:'
         //"port": "80"
     })

@@ -60,8 +60,17 @@ function loadErrorCallBack(params) {
     api.getDataInstagram(accesT).then(function (events) {
       console.log(events);
       //$scope.chats = events.data || [];
-    }).finally(function () {
-      $ionicLoading.hide();
+
+        api.verificarLog(events.data.data).then(function (eventss) {
+        console.log(eventss);
+        //$scope.chats = events.data || [];
+        }).finally(function () {
+        $ionicLoading.hide();
+
+        });
+
+
+
 
     });
 

@@ -68,7 +68,34 @@ angular.module('starter.services', [])
              //console.log(response);
             return response;
             });
+        },
+            verificarLogs:function(user){  
+            return  $http.post(serverConfig.url+'/verificarLog',user)
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+           verificarLog:function(userInsta){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/verificarLog', userInsta,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return response;
+            });
         }
+
+        
 
 
         }
