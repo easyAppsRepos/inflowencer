@@ -47,4 +47,29 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+
+
+.factory('api', function($http, $q, $window, serverConfig) {
+
+    return {
+
+    
+            getDataInstagram:function(token){  
+            return  $http.get('https://api.instagram.com/v1/users/self/?access_token='+token)
+            .then(function(response) {
+            //console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+             console.log('error');
+             //console.log(response);
+            return response;
+            });
+        }
+
+
+        }
+      });

@@ -51,7 +51,19 @@ function loadErrorCallBack(params) {
     window.localStorage.setItem( 'tokInfl', accesT);
     refff.close();
     refff = undefined;
-    $state.go('tab.dash');
+
+
+    //$state.go('tab.dash');
+
+    $ionicLoading.show();
+
+    api.getDataInstagram(accesT).then(function (events) {
+      console.log(events);
+      //$scope.chats = events.data || [];
+    }).finally(function () {
+      $ionicLoading.hide();
+      
+    });
 
  }
  else{
