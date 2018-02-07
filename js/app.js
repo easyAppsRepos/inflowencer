@@ -50,7 +50,7 @@ if(localStorage.getItem('tokInfl') == null ||
         }
         else{
            // console.log(localStorage.getItem('userInfoTS'));
-       $urlRouterProvider.otherwise('/tab/dsash');
+       $urlRouterProvider.otherwise('/tab/dash');
         // $urlRouterProvider.otherwise("/login");
         }
 
