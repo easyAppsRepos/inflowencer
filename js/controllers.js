@@ -62,9 +62,27 @@ function loadErrorCallBack(params) {
       //$scope.chats = events.data || [];
 
         api.verificarLog(events.data.data).then(function (eventss) {
-        console.log(eventss);
+
+          if(!eventss){
+
+            console.log('error');
+          }
+            else{
+
+               console.log(eventss.data.user);
+        window.localStorage.setItem( 'userInfoIF', JSON.stringify(eventss.data.user));  
         //$scope.chats = events.data || [];
+
+        $state.go('tab.dash');
+            }
+
+       
+
+
+
+
         }).finally(function () {
+
         $ionicLoading.hide();
 
         });
@@ -120,10 +138,9 @@ function executeScriptCallBack(params) {
   else{
     //  window.open(link, '_blank', 'location=yes'); return false;
       refff = cordova.InAppBrowser.open(link, '_blank', 'location=no');
-
       refff.addEventListener('loadstart', loadStartCallBack);
-       refff.addEventListener('loadstop', loadStopCallBack);
-              refff.addEventListener('loaderror', loadErrorCallBack);
+      refff.addEventListener('loadstop', loadStopCallBack);
+      refff.addEventListener('loaderror', loadErrorCallBack);
 
 
 

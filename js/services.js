@@ -91,7 +91,7 @@ angular.module('starter.services', [])
             }, function(response) {
             // something went wrong
             console.log('error');
-            return response;
+            return undefined;
             });
         }
 
