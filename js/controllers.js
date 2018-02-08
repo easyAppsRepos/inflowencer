@@ -5,7 +5,9 @@ angular.module('starter.controllers', [])
  console.log(window.location.href );
 
  
-
+  var userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+console.log(userData);
+  $scope.usuarioInfo.id = userData.idUsuario;
 
 
 })
