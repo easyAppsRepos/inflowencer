@@ -176,8 +176,31 @@ function executeScriptCallBack(params) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $state, $ionicHistory, $ionicLoading, $timeout) {
   $scope.settings = {
     enableFriends: true
   };
+
+
+
+$scope.cerrarSesion = function(){
+$ionicLoading.show();
+
+  window.localStorage.setItem( 'tokInfl', undefined);  
+  $state.go('login');
+  $timeout(function () {
+          $ionicHistory.clearCache();
+          $ionicLoading.hide();
+      }, 200)  
+
+
+}
+
+
+
+
+
+
+
+
 });
