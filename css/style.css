@@ -11,6 +11,35 @@
 }
 
 
+.ddssd{
+
+     color: white;
+    font-family: LatoL;
+    letter-spacing: 1px;
+    border: solid 3px white;
+    display: inline-block;
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+    padding-left: 5px;
+    height: 50px;
+    font-size: 15px;
+        max-width: 475px;
+}
+.btnfoot{
+
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    font-family: LatoL;
+    background: transparent !important;
+    letter-spacing: 3px;
+    border: none !important;
+}
+
 .bar .button.back-button {
 
     color: white !important;
@@ -52,6 +81,10 @@
     margin-bottom: 6px;
     font-size: 15px;
     white-space: normal;
+}
+
+.ddssd select{
+    color:white;
 }
 .bntH{
 

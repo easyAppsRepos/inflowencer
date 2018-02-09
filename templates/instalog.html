@@ -33,7 +33,60 @@
 <ion-content class='ttss' style="      -webkit-filter:contrast(120%);
     filter: contrast(120%);  background-size: cover;background-image:url('img/fondoLogin.png')" >
 
+<!-- <img src="img/logoLogin.png" style="    width: 80%;
+    margin-left: 10%;
+    margin-top: 18%;
+    z-index: 44;
+    position: absolute;">
+<img src="img/cc3.png" style="    height: 80px;
+    width: 100%;
+    left: 0px;
+    position: absolute;
+    margin-top: calc(18% - 15px);
+    z-index: 30;
+    opacity: 0.8;"> -->
+
+<p style="text-align: center;
+    color: white;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    font-size: 21px;
+    margin-top: 20px;">Completa tu perfil</p>
+
+<div style="
+    margin-top: 80px;
+
+    width: 100%;
+    text-align: center;
+    font-family: LatoL;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: white;
+">
+    <p style="    line-height: 40px;">choose your type of profile</p>
+
+        <select style="    height: 48px;
+    width: 156px;
+    background: transparent;
+    border: solid 3px white;
+    color: white;
+    margin-top: 25px;padding-left: 10px;
+    font-size: 24px;" ng-model='cuenta.tipo' >
+      <option selected value="1">influencer</option>
+      <option value="2" >seller</option>
+
+    </select>
+
+
+
+
+</div>
+
+
+
 
     </ion-content>
 
+<button class="btnfoot" ng-click='goLogin()' >back</button>
+<button class="btnfoot" style="right: 0;" ng-click='goRegister(cuenta.tipo)'>next</button>
     </ion-view >

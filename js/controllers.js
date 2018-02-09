@@ -11,6 +11,56 @@ console.log(userData);
 
 
 })
+
+
+.controller('registerLogCtrl', function($scope,  $state, $rootScope, $location, api) {
+
+  $scope.usuario={};
+ 
+  var token = window.localStorage.getItem('tokInfl');
+console.log(token);
+    api.getDataInstagram(token).then(function (events) {
+      console.log(events.data.data);
+
+      $scope.dataUser = events.data.data;
+      //$scope.chats = events.data || [];
+
+    }).finally(function () {
+
+        $ionicLoading.hide();
+
+        });
+
+      $scope.goInstalog = function(){
+
+    $state.go('instalog');
+  }
+
+
+  $scope.registrarUsuario = function(usuario){
+    console.log(usuario);
+    
+  }
+
+
+})
+
+.controller('instalogCtrl', function($scope,$state) {
+
+$scope.cuenta={};
+
+  $scope.goLogin = function(){
+
+    $state.go('login');
+  }
+
+
+  $scope.goRegister = function(tipo){
+    console.log(tipo);
+    $state.go('registerLog');
+  }
+
+})
 .controller('HomeCtrl', function($scope) {})
 .controller('RequestCtrl', function($scope) {})
 .controller('loginCtrlI', function($scope, $state, api, $ionicLoading) {
@@ -75,7 +125,14 @@ function loadErrorCallBack(params) {
         window.localStorage.setItem( 'userInfoIF', JSON.stringify(eventss.data.user));  
         //$scope.chats = events.data || [];
 
-        $state.go('tab.dash');
+        if(eventss.data.user.tipoCuenta == 0){
+           $state.go('instalog');
+        }
+        else{
+           $state.go('tab.dash');
+        }
+
+       
             }
 
        

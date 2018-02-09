@@ -94,9 +94,13 @@ if(localStorage.getItem('tokInfl') == null ||
     .state('instalog', {
     url: '/instalog',
     templateUrl: 'templates/instalog.html',
-    controller: 'RequestCtrl'
+    controller: 'instalogCtrl'
   })
-
+   .state('registerLog', {
+    url: '/registerLog',
+    templateUrl: 'templates/registerLog.html',
+    controller: 'registerLogCtrl'
+  })
 
 
 
