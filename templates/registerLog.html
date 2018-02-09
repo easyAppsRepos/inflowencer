@@ -74,13 +74,13 @@
     vertical-align: text-bottom;
         line-height: 23px;
     ">Avg likes <br> per post <br> <span style="    font-size: 23px;
-    letter-spacing: 3px;">2301</span></div>
+    letter-spacing: 3px;">{{dataUser.counts.media}}</span></div>
 <img style="
     height: 96px;
     border-radius: 100%;
     border: solid 3px white;
     vertical-align: inherit;
-    " src="img/ben.png">
+    " ng-src="dataUser.profile_picture">
 
 <div style="
         display: inline-block;
@@ -89,7 +89,7 @@
     height: 96px;
     vertical-align: text-bottom;
     line-height: 34px;
-    ">Followeds <br> <span style="font-size:36px">20 K<span></span></span></div>
+    ">Followers <br> <span style="font-size:36px">{{dataUser.counts.followed_by}}<span></span></span></div>
 
 </div>
     
@@ -104,7 +104,7 @@
     font-family: LatoL;
     letter-spacing: 2px;
     margin-bottom: 10px;
-">@ XXXXXX - store</div>
+">@ {{dataUser.username}}- influencer</div>
         <textarea ng-model='usuario.bio' placeholder='This is my store and I sell ...' style="
     width: 100%;
     resize: none;
