@@ -53,7 +53,7 @@
     font-family: LatoL;
     letter-spacing: 2px;
     font-size: 21px;
-    margin-top: 20px;">Completa tu perfil</p>
+    margin-top: 20px;">Complete your profile</p>
 <div style="
   margin-top: 35px;
 
@@ -80,7 +80,7 @@
     border-radius: 100%;
     border: solid 3px white;
     vertical-align: inherit;
-    " ng-src="dataUser.profile_picture">
+    " ng-src="{{dataUser.profile_picture}}">
 
 <div style="
         display: inline-block;
@@ -105,7 +105,7 @@
     letter-spacing: 2px;
     margin-bottom: 10px;
 ">@ {{dataUser.username}}- influencer</div>
-        <textarea ng-model='usuario.bio' placeholder='This is my store and I sell ...' style="
+        <textarea ng-model='usuario.bio' placeholder="I' am interested in..." style="
     width: 100%;
     resize: none;
     display: flex;
@@ -121,11 +121,17 @@
         max-width: 475px;
 "></textarea>
 
-<div class='ddssd' >I search people to publish for ... 
-    <select ng-model='usuario.searchFor'>
-        <option>asd</option>
-        <option>asd</option>
+<div class='ddssd' >I would like to publish...
+    <select ng-model='usuario.opcion11'>
+        <option value='1'>tech</option>
+        <option value='2'>clothes</option>
     </select>
+
+      <select ng-model='usuario.opcion12'>
+        <option value='1'>tech</option>
+        <option value='2'>clothes</option>
+    </select>
+
 
 
 
@@ -133,15 +139,17 @@
 </div>
 
 
-<div class='ddssd'>I search people to publish for ... 
-    <select ng-model='usuario.publishFor'>
-        <option>asd</option>
-        <option>asd</option>
+<div class='ddssd'>My audience are mostly ... 
+    <select ng-model='usuario.opcion21'>
+        <option value='1'>young</option>
+        <option value='2'>girls</option>
+         <option value='3'>boys</option>
     </select>
 
-    <select ng-model='usuario.publishFor2'>
-        <option>as2d</option>
-        <option>as2d</option>
+    <select ng-model='usuario.publishFor22'>
+        <option value='1'>young</option>
+        <option value='2'>girls</option>
+         <option value='3'>boys</option>
     </select>
 
 

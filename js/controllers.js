@@ -17,7 +17,7 @@ console.log(userData);
 
   $scope.usuario={};
  
-  var token = window.localStorage.getItem('tokInfl');
+  var token = window.localStorage.getItem('tokInfl') || undefined;
 console.log(token);
     api.getDataInstagram(token).then(function (events) {
       console.log(events.data.data);
@@ -38,8 +38,28 @@ console.log(token);
 
 
   $scope.registrarUsuario = function(usuario){
-    console.log(usuario);
-    
+
+
+// instagramId, tipoCuenta, bio,opcion11, opcion12, opcion21, opcion22
+
+    if(token == undefined){
+      $state.log('login');
+    }
+    else{
+        $ionicLoading.show();
+        usuario.instagramId = $scope.dataUser.id;
+         usuario.tipoCuenta = 1;
+
+        console.log(usuario);
+
+        api.registrarUsuario(usuario).then(function (eventss) {
+          console.log('ds2');
+          console.log(eventss);
+        }).finally(function () {
+        $ionicLoading.hide();
+        $state.go('tab.dash');
+        });
+    }      
   }
 
 

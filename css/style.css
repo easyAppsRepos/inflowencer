@@ -21,10 +21,11 @@
     margin-top: 10px;
     width: 100%;
     text-align: left;
-    padding-left: 5px;
+    padding: 5px;
     height: 50px;
     font-size: 15px;
         max-width: 475px;
+            height: 62px;
 }
 .btnfoot{
 
@@ -38,6 +39,7 @@
     background: transparent !important;
     letter-spacing: 3px;
     border: none !important;
+    padding: 0px !important;
 }
 
 .bar .button.back-button {

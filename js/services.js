@@ -83,6 +83,18 @@ angular.module('starter.services', [])
             });
         },
 
+                registrarUsuario:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/registrarUsuario', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
            verificarLog:function(userInsta){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/verificarLog', userInsta,{headers:{'Content-Type': 'application/json'}})
