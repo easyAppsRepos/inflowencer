@@ -42,10 +42,7 @@ console.log(token);
 
 // instagramId, tipoCuenta, bio,opcion11, opcion12, opcion21, opcion22
 
-    if(token == undefined){
-      $state.log('login');
-    }
-    else{
+    if(token){
         $ionicLoading.show();
         usuario.instagramId = $scope.dataUser.id;
          usuario.tipoCuenta = 1;
@@ -59,7 +56,10 @@ console.log(token);
         $ionicLoading.hide();
         $state.go('tab.dash');
         });
-    }      
+    }
+    else {
+      $state.go('login');
+    }     
   }
 
 
