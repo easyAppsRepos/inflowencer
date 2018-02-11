@@ -13,7 +13,7 @@ console.log(userData);
 })
 
 
-.controller('registerLogCtrl', function($scope,  $state, $rootScope, $location, api) {
+.controller('registerLogCtrl', function($scope,  $state, $rootScope, $location, api,  $ionicLoading) {
 
   $scope.usuario={};
  
@@ -77,7 +77,16 @@ $scope.cuenta={};
 
   $scope.goRegister = function(tipo){
     console.log(tipo);
-    $state.go('registerLog');
+
+    if(tipo == 1){$state.go('registerLog');}
+    else if(tipo == 2){$state.go('registerLog');}
+    else{
+      alert(debes seleccionar un tipo de perfil);
+    }
+
+
+
+    
   }
 
 })
