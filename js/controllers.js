@@ -81,7 +81,7 @@ $scope.cuenta={};
     if(tipo == 1){$state.go('registerLog');}
     else if(tipo == 2){$state.go('registerLog');}
     else{
-      alert(debes seleccionar un tipo de perfil);
+      alert('debes seleccionar un tipo de perfil');
     }
 
 
