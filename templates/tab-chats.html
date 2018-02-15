@@ -25,15 +25,27 @@
     border-radius: 2px;
     font-size: 26px;
     font-family: Lato2;
-    margin-left: 15%;" type="text" placeholder="@user" ng-model="buscador.palabra" ng-change='buscarPalabra(buscador.palabra)'></div>
+    margin-left: 15%;" type="text" placeholder="@user" ng-model="buscador.palabra" ng-change='buscarPalabra(buscador.palabra)'>
+
+    </div>
+
+
+
+  <div  style='    color: #444;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    opacity: 0.4;' ng-if='resultados.length == 0 ' >
+No hay resultados . . .
+
+    </div>
 
 
     <div class="userResult" ng-repeat='r in resultados' ng-click='goPerfil(r.instagramId, r.tipoCuenta)'>
         <img ng-src="{{r.imagen}}"><span>{{r.username}}</span>
 
     </div>
-
-
 
 
 

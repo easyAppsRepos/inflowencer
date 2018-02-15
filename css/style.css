@@ -153,11 +153,13 @@ background-color: #0090b4;
 }
 .btnSett{
 
-    width: 100%;
+        width: 100%;
     font-size: 24px;
     font-family: LatoL;
     color: #0090b4;
     margin-top: 25px;
+    background-color: transparent !important;
+    border: none !important;
 
 
 }
