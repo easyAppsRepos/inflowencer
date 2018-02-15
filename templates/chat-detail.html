@@ -4,11 +4,131 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{chat.name}}">
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
-  </ion-content>
+<ion-view view-title="Welcome, @{{userData.username}}">
+
+<ion-content class='ttss' style="background-size: cover;background-color:#5666b8" >
+<!-- 
+<img src="img/logoLogin.png" style="    width: 80%;
+    margin-left: 10%;
+    margin-top: 18%;
+    z-index: 44;
+    position: absolute;">
+
+
+<img src="img/cc3.png" style="    height: 80px;
+    width: 100%;
+    left: 0px;
+
+    margin-top: calc(18% - 15px);
+    z-index: 30;
+    opacity: 0.8;">
+ -->
+<p style="text-align: center;
+    color: white;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    font-size: 21px;
+    margin-top: 20px;">@{{dataUser.username}} <br> ({{dataUser.tipoCuenta == 1 ? 'influencer' : 'store'}})</p>
+<div style="
+  margin-top: 35px;
+
+    width: 100%;
+    text-align: center;
+    font-family: LatoL;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: white;
+">
+
+
+<div style="
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    height: 96px;
+    vertical-align: text-bottom;
+        line-height: 23px;
+    ">Avg likes <br> per post <br> <span style="    font-size: 23px;
+    letter-spacing: 3px;">{{dataUser.counts.media}}</span></div>
+<img style="
+
+        height: 96px;
+    width: 96px;
+    border-radius: 100%;
+    border: solid 3px white;
+    vertical-align: inherit;
+    " ng-src="{{dataUser.imagen}}">
+
+<div style="
+        display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    height: 96px;
+    vertical-align: text-bottom;
+    line-height: 34px;
+    ">Followers <br> <span style="font-size:36px">{{dataUser.counts.followed_by}}<span></span></span></div>
+
+</div>
+    
+ <div style="
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+">
+        <div style="
+    color: white;
+    font-size: 28px;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    line-height: 29px;
+">@ {{dataUser.username}} - {{dataUser.tipoCuenta == 1 ? 'influencer' : 'store'}}</div>
+        <div style="
+    width: 100%;
+    resize: none;
+    display: flex;
+    height: 107px;
+    background-color: transparent;
+    border: solid 4px white;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    padding: 7px;
+    font-size: 17px;
+    margin-left: auto;
+    margin-right: auto;
+        max-width: 475px;
+            color: white;
+">{{dataUser.bioApp || "Info about user . . . "}}</div>
+
+<div class='ddssd' style="height: 77px;" ><span style="width: 100%;display: block;margin-bottom: 6px;">I would like to publish...</span>
+    
+    <div class="vineta">tech</div>
+    <div class="vineta">clothes</div>
+
+
+
+</div>
+
+<div class='ddssd' style="height: 77px;" ><span style="width: 100%;display: block;margin-bottom: 6px;">My audience are mostly ... </span>
+    
+    <div class="vineta">girls</div>
+    <div class="vineta">boys</div>
+
+
+
+</div>
+
+    <button style="padding: 7px 30px;
+    border: none !important;
+    margin-top: 18px;
+    background-color: #ffc800;
+    color: white;
+    font-family: LatoL;
+    font-weight: 800;
+    border-radius: 2px;" ng-click='abrirReq()'>Make a request</button>
+    </div>
+
+
+
+    </ion-content>
 </ion-view>

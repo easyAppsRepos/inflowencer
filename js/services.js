@@ -69,6 +69,22 @@ angular.module('starter.services', [])
             return response;
             });
         },
+
+        getDataInstagramUser:function(token,userID){  
+
+            return  $http.get('https://api.instagram.com/v1/users/'+userID+'/?access_token='+token)
+            .then(function(response) {
+            //console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+             console.log('error');
+             //console.log(response);
+            return response;
+            });
+        },
+
+
             verificarLogs:function(user){  
             return  $http.post(serverConfig.url+'/verificarLog',user)
             .then(function(response) {
@@ -83,7 +99,7 @@ angular.module('starter.services', [])
             });
         },
 
-                registrarUsuario:function(user){  
+          registrarUsuario:function(user){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/registrarUsuario', user,{headers:{'Content-Type': 'application/json'}})
             .then(function(response) {
@@ -94,6 +110,86 @@ angular.module('starter.services', [])
             return undefined;
             });
         },
+
+          cambiarEstadoRequest:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/cambiarEstadoRequest', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+         getRequests:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/getRequests', {id:user},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
+            getTop:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/getTop',{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
+
+          getDataUser:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/getDataUser', {id:user},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+        infoRequest:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/infoRequest', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
+
+
+        
+
+        buscarUsuario:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/buscarUsuario', {palabra:user},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
 
            verificarLog:function(userInsta){  
         //  var dusuario = {body:JSON.stringify({usuario})};

@@ -1,13 +1,37 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope,  $rootScope, $location) {
+.controller('DashCtrl', function($scope,  $rootScope, $location, $state, $ionicLoading, api) {
 
  console.log(window.location.href );
 
  
-  var userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
-console.log(userData);
-  $scope.usuarioInfo.id = userData.idUsuario;
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+  console.log($scope.userData.instagramId);
+
+  var getRequests = function(){
+
+      $ionicLoading.show();
+      api.getRequests($scope.userData.instagramId).then(function (data) {
+
+        console.log(data.data.data);
+        $scope.requests = data.data.data || [];
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+
+  }
+
+  getRequests();
+/*  if(userData){
+
+    $scope.usuarioInfo.id = userData.idUsuario;
+
+  }
+  else{$state.go('login');}
+  */
 
 
 })
@@ -90,8 +114,166 @@ $scope.cuenta={};
   }
 
 })
-.controller('HomeCtrl', function($scope) {})
-.controller('RequestCtrl', function($scope) {})
+.controller('HomeCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+
+$scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+    $scope.getTop = function(){
+      $ionicLoading.show();
+      api.getTop().then(function (data) {
+      console.log(data.data[0]);
+      if(data){
+      $scope.listaInfluencers = data.data[0];
+      $scope.listaStores = data.data[1];
+      }
+      else{
+      alert('Ha ocurrido un error');
+      }
+      }).finally(function () {
+      $ionicLoading.hide();
+      });     
+    }
+
+  $scope.getTop();
+
+
+})
+
+
+.controller('requestInflCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+
+ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+ 
+
+  $scope.aceptarP = function(idR){
+
+           $ionicLoading.show();
+          api.cambiarEstadoRequest({idRequest:idR, estado:1}).then(function (data) {
+
+          console.log(data);
+        //data.data.users
+        if(data){
+   
+          console.log('listo');
+         $scope.enviarReq();
+          //$state.go('tab.dash');
+        }
+        else{
+          alert('Ha ocurrido un error');
+        }
+        }).finally(function () {
+        $ionicLoading.hide();
+        });
+      } 
+
+  $scope.rechazarP = function(idR){
+
+               $ionicLoading.show();
+          api.cambiarEstadoRequest({idRequest:idR, estado:2}).then(function (data) {
+
+          console.log(data);
+        //data.data.users
+        if(data){
+   
+          console.log('listo');
+          $scope.enviarReq();
+          //$state.go('tab.dash');
+        }
+        else{
+          alert('Ha ocurrido un error');
+        }
+        }).finally(function () {
+        $ionicLoading.hide();
+        });
+
+
+  } 
+
+
+
+  $scope.enviarReq = function(){
+
+   // newRequest.idStore = $scope.userData.instagramId;
+    
+    //console.log(newRequest);
+
+          $ionicLoading.show();
+          api.infoRequest({idRequest:$stateParams.idRequest}).then(function (data) {
+
+          console.log(data.data.request[0]);
+        //data.data.users
+        if(data){
+   
+          console.log(data.data.request[0].idInfluencer ==  $scope.userData.instagramId);
+          $scope.request = data.data.request[0];
+          //$state.go('tab.dash');
+        }
+        else{
+          alert('Ha ocurrido un error');
+        }
+        
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+
+
+       
+  }
+
+  $scope.enviarReq();
+
+
+
+})
+
+.controller('RequestCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+
+ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+ $scope.req = {};
+
+  $scope.enviarReq = function(newRequest){
+
+    newRequest.idStore = $scope.userData.instagramId;
+    newRequest.idInfluencer = $stateParams.idUsuario;
+    console.log(newRequest);
+
+          $ionicLoading.show();
+          api.enviarReq(newRequest).then(function (data) {
+
+          console.log(data.data.insertId);
+        //data.data.users
+        if(data.data.insertId){
+          $ionicHistory.goBack(-2);
+          alert('request enviada correctamente');
+          //$state.go('tab.dash');
+        }
+        else{
+          alert('Ha ocurrido un error');
+        }
+        
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+
+
+       
+  }
+
+
+
+
+
+})
 .controller('loginCtrlI', function($scope, $state, api, $ionicLoading) {
 
 
@@ -237,7 +419,31 @@ function executeScriptCallBack(params) {
 
 
 })
-.controller('ProfileCtrl', function($scope) {})
+
+.controller('ProfileCtrl', function($scope, $stateParams, api, $state, $ionicLoading) {
+
+ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+    //var token = window.localStorage.getItem('tokInfl') || undefined;
+    console.log($scope.userData.instagramId);
+    //console.log($stateParams.idUsuario);
+
+    $ionicLoading.show();
+    api.getDataUser($scope.userData.instagramId).then(function (events) {
+      console.log(events);
+
+      $scope.dataUser = events.data.user[0];
+      //$scope.chats = events.data || [];
+
+    }).finally(function () {
+
+        $ionicLoading.hide();
+
+        });
+
+})
+
 .controller('paymentMethodCtrl', function($scope) {})
 .controller('personalCtrl', function($scope) {})
 .controller('historyCtrl', function($scope) {})
@@ -245,7 +451,7 @@ function executeScriptCallBack(params) {
 
 
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, api, $ionicLoading, $state ) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -253,15 +459,79 @@ function executeScriptCallBack(params) {
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
+/*
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
-  };
+  };*/
+
+  $scope.buscador={};
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+  $scope.goPerfil = function( idUsuario, tipoCuenta){
+
+  console.log(idUsuario);
+  $state.go('tab.chat-detail', {idUsuario: idUsuario});
+
+  }
+
+
+  $scope.buscarPalabra = function(palabra){
+
+if(palabra.length > 2){      $ionicLoading.show();
+
+
+      api.buscarUsuario(palabra).then(function (data) {
+
+        console.log(data.data.users);
+        //data.data.users
+
+        $scope.resultados= data.data.users;
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+        }
+
+  }
+
+
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function($scope, $stateParams, api, $state, $ionicLoading) {
+
+ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+    var token = window.localStorage.getItem('tokInfl') || undefined;
+    console.log(token);
+    console.log($stateParams.idUsuario);
+
+    $ionicLoading.show();
+    api.getDataUser($stateParams.idUsuario).then(function (events) {
+      console.log(events);
+
+      $scope.dataUser = events.data.user[0];
+      //$scope.chats = events.data || [];
+
+    }).finally(function () {
+
+        $ionicLoading.hide();
+
+        });
+
+      
+    $scope.abrirReq = function(){
+        $state.go('tab.newRequest', {idUsuario: $stateParams.idUsuario});
+    }
+
+
+
+
+  
 })
 
 .controller('AccountCtrl', function($scope, $state, $ionicHistory, $ionicLoading, $timeout) {

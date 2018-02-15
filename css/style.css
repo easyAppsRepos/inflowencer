@@ -47,6 +47,23 @@
     color: white !important;
 }
 
+
+.etiquetaTop{
+    background: white;
+    color: #444;
+    border-radius: 19px;
+    padding: 1px 5px;
+    margin-left: 5px;
+}
+
+
+
+.vineta{
+    display: inline-block;
+    border: solid 1px white;
+    padding: 3px 6px;
+    margin-left: 5px;
+}
 .userResult{
 	    width: 70%;
     margin-left: 15%;
@@ -56,6 +73,11 @@
 
 .userResult img{
 	vertical-align: middle;
+        height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 8px;
+
 }
 
 .userResult span{

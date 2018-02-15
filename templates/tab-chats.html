@@ -1,4 +1,5 @@
-<ion-view view-title="Welcome, @vichudo">
+
+<ion-view view-title="Welcome, @{{userData.username}}">
   <ion-content  style="font-family:Lato">
 
 
@@ -13,27 +14,27 @@
           Delete
         </ion-option-button>
       </ion-item>
-    </ion-list> -->
-<p style="margin-top:40px;text-align:center; letter-spacing:1px; font-size:16px">search for stores / categories</p>
+    </ion-list> --> 
+<p style="margin-top:40px;text-align:center; letter-spacing:1px; font-size:16px">search for influencer / stores</p>
 
-<div style="text-align:center"><input style="    width: 70%;
+<div style="text-align:center">
+
+    <input style="    width: 70%;
     border-bottom: solid 3px #00517f !important;
     border: none;
     border-radius: 2px;
     font-size: 26px;
-    font-family: Lato2;" type="" placeholder="@user" name=""></div>
+    font-family: Lato2;
+    margin-left: 15%;" type="text" placeholder="@user" ng-model="buscador.palabra" ng-change='buscarPalabra(buscador.palabra)'></div>
 
 
-    <div class="userResult">
-        <img src="img/userblu.png"><span>importachile</span>
-
-    </div>
-
-
- <div class="userResult">
-        <img src="img/userblu.png"><span>imperio_zapatos</span>
+    <div class="userResult" ng-repeat='r in resultados' ng-click='goPerfil(r.instagramId, r.tipoCuenta)'>
+        <img ng-src="{{r.imagen}}"><span>{{r.username}}</span>
 
     </div>
+
+
+
 
 
   </ion-content>

@@ -1,28 +1,46 @@
 
 
-<ion-view view-title="Welcome, @{{usuarioInfo.id}}">
+<ion-view view-title="Welcome, @{{userData.username}}">
 
 
   <ion-content class="padding" style='padding: 12px !important;background-color: white ;font-family: Lato;
             letter-spacing: 1px; color: white'>
    
-  <div ui-sref='tab.request' class='notiBtn' style="  background: #5666b8;">
+  <div ng-repeat='r in requests' ui-sref="tab.requestInfl({idRequest: r.idRequest})"  class='notiBtn' style="  background: #5666b8;">
     
 
-       <p style="    font-size: 25px;
+       <p ng-if='userData.instagramId == r.idStore' style="    font-size: 25px;
     display: inline-block;
     padding-left: 10px;
     overflow: hidden !important;
     letter-spacing: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 100%;"> New Request <span style="letter-spacing: 1px !important;font-size: 16px;
-    "> by @casechile</span></p>
+    width: 100%;">@{{r.usernameInfluencer}} <span style="letter-spacing: 1px !important;font-size: 16px;
+    "> by @{{r.usernameStore}}</span></p>
 
+
+           <p ng-if='userData.instagramId == r.idInfluencer' style="    font-size: 25px;
+    display: inline-block;
+    padding-left: 10px;
+    overflow: hidden !important;
+    letter-spacing: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;">Request <span style="letter-spacing: 1px !important;font-size: 16px;
+    "> by @{{r.usernameStore}}</span></p>
+
+
+
+    <span ng-if='userData.instagramId == r.idStore' style="padding-left: 10px;
+    opacity: 0.5;">as store - {{r.estado==0 ? 'Waiting for approval...' : r.estado == 1 ? 'Approved' : 'Rejected'}}</span>
+
+    <span ng-if='userData.instagramId == r.idInfluencer' style="padding-left: 10px;
+    opacity: 0.5;">as influencer - {{r.estado==0 ? 'Waiting for approval...' : r.estado == 1 ? 'Approved' : 'Rejected'}}</span>
 
 
   </div>
-
+<!-- 
 
   <div ui-sref='tab.request' class='notiBtn' style="  background: #ff5f5f;">
     
@@ -55,7 +73,7 @@
 
 
   </div>
-
+ -->
 
 
   </ion-content>

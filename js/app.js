@@ -155,7 +155,7 @@ if(localStorage.getItem('tokInfl') == null ||
       }
     })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/chats/:idUsuario',
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
@@ -163,6 +163,32 @@ if(localStorage.getItem('tokInfl') == null ||
         }
       }
     })
+
+
+      .state('tab.newRequest', {
+      url: '/newRequest/:idUsuario',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/request.html',
+          controller: 'RequestCtrl'
+        }
+      }
+    })
+
+           .state('tab.requestInfl', {
+      url: '/requestInfl/:idRequest',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/requestInfl.html',
+          controller: 'requestInflCtrl'
+        }
+      }
+    })
+
+
+
+
+
 
 
   .state('tab.account', {
