@@ -4,6 +4,17 @@ angular.module('starter.controllers', [])
 
  console.log(window.location.href );
 
+
+
+ $scope.doRefresh = function() {
+    getRequests();
+
+    }
+
+
+
+
+
  
   $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
   console.log($scope.userData.instagramId);
@@ -19,6 +30,7 @@ angular.module('starter.controllers', [])
 
         }).finally(function () {
         $ionicLoading.hide();
+          $scope.$broadcast('scroll.refreshComplete');
        
         });
 
