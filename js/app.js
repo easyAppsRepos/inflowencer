@@ -97,7 +97,7 @@ if(localStorage.getItem('tokInfl') == null ||
     controller: 'instalogCtrl'
   })
    .state('registerLog', {
-    url: '/registerLog',
+    url: '/registerLog/:tipoPerfil',
     templateUrl: 'templates/registerLog.html',
     controller: 'registerLogCtrl'
   })

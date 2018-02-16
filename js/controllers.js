@@ -37,11 +37,12 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('registerLogCtrl', function($scope,  $state, $rootScope, $location, api,  $ionicLoading) {
+.controller('registerLogCtrl', function($scope,  $state, $rootScope, $stateParams, $location, api,  $ionicLoading) {
 
   $scope.usuario={};
- 
+  $scope.tipoProfile = $stateParams.tipoPerfil;
   var token = window.localStorage.getItem('tokInfl') || undefined;
+
 console.log(token);
     api.getDataInstagram(token).then(function (events) {
       console.log(events.data.data);
@@ -69,7 +70,7 @@ console.log(token);
     if(token){
         $ionicLoading.show();
         usuario.instagramId = $scope.dataUser.id;
-         usuario.tipoCuenta = 1;
+         usuario.tipoCuenta = $stateParams.tipoPerfil;
 
         console.log(usuario);
 
@@ -89,7 +90,7 @@ console.log(token);
 
 })
 
-.controller('instalogCtrl', function($scope,$state) {
+.controller('instalogCtrl', function($scope,$state,$ionicPopup, $ionicLoading) {
 
 $scope.cuenta={};
 
@@ -99,13 +100,31 @@ $scope.cuenta={};
   }
 
 
+
+ $scope.showAlert = function(message) {
+   var alertPopup = $ionicPopup.alert({
+     title: 'ooops!',
+     template: message
+   });
+
+   alertPopup.then(function(res) {
+     console.log('okm');
+   });
+ };
+
+
+
   $scope.goRegister = function(tipo){
     console.log(tipo);
 
-    if(tipo == 1){$state.go('registerLog');}
-    else if(tipo == 2){$state.go('registerLog');}
+    if(tipo == 1){
+   
+             $state.go('registerLog', {tipoPerfil : tipo});
+
+    }
+    else if(tipo == 2){   $state.go('registerLog', {tipoPerfil : tipo});}
     else{
-      alert('debes seleccionar un tipo de perfil');
+      $scope.showAlert('You must select a profile type');
     }
 
 
