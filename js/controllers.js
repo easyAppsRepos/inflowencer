@@ -333,9 +333,9 @@ function loadErrorCallBack(params) {
      console.log('her5');
  console.log(window.location.href );
   console.log(params);
- 
 
- if(params.code==-1004 || params.code=='-1004'){
+  console.log()
+ if(params.code==-1004 || params.code=='-1004' || params.code=='-6' ||  params.code == -6 ){
 
 
     var str = params.url;
