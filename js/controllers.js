@@ -112,6 +112,7 @@ console.log(token);
     inAppPurchase
       .getProducts(productIds)
       .then(function (products) {
+        console.log(products);
         $ionicLoading.hide();
         $scope.products = products;
       })
