@@ -89,9 +89,13 @@ console.log(token);
         api.registrarUsuario(usuario).then(function (eventss) {
           console.log('ds2');
           console.log(eventss);
+
+          if(eventss){
+            $state.go('tab.dash');
+          }
         }).finally(function () {
         $ionicLoading.hide();
-        $state.go('tab.dash');
+        
         });
     }
     else {
@@ -548,10 +552,48 @@ function executeScriptCallBack(params) {
 })
 
 .controller('paymentMethodCtrl', function($scope) {})
-.controller('personalCtrl', function($scope) {})
 .controller('historyCtrl', function($scope) {})
 .controller('notisCtrl', function($scope) {})
 
+.controller('personalCtrl', function($scope, api, $ionicLoading, $state ) {
+
+
+  $scope.buscador={};
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+  console.log($scope.userData);
+
+
+  $scope.goPerfil = function( idUsuario, tipoCuenta){
+
+  console.log(idUsuario);
+  $state.go('tab.chat-detail', {idUsuario: idUsuario});
+
+  }
+
+
+  $scope.buscarPalabra = function(palabra){
+
+if(palabra.length > 2){      $ionicLoading.show();
+
+
+      api.buscarUsuario(palabra).then(function (data) {
+
+        console.log(data.data.users);
+        //data.data.users
+
+        $scope.resultados= data.data.users;
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+        }
+
+  }
+
+
+})
 
 
 .controller('ChatsCtrl', function($scope, api, $ionicLoading, $state ) {

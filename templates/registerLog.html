@@ -72,9 +72,9 @@
     letter-spacing: 1px;
     height: 96px;
     vertical-align: text-bottom;
-        line-height: 23px;
-    ">Avg likes <br> per post <br> <span style="    font-size: 23px;
-    letter-spacing: 3px;">{{dataUser.counts.media}}</span></div>
+        line-height: 34px;
+    ">Follows <br> <span style="    font-size: 36px;
+    letter-spacing: 3px;">{{dataUser.counts.follows}}</span></div>
 <img style="
 
         height: 96px;
@@ -106,8 +106,8 @@
     font-family: LatoL;
     letter-spacing: 2px;
     margin-bottom: 10px;
-">@ {{dataUser.username}}- {{tipoProfile == 1 ? 'influencer' : 'store'}}</div>
-        <textarea ng-model='usuario.bio' placeholder="I' am interested in..." style="
+">@{{dataUser.username}}- {{tipoProfile == 1 ? 'influencer' : 'store'}}</div>
+        <textarea ng-model='usuario.bio' placeholder="I'm interested in..." style="
     width: 100%;
     resize: none;
     display: flex;
@@ -117,21 +117,42 @@
     font-family: LatoL;
     letter-spacing: 2px;
     padding: 7px;
+        color: white;
     font-size: 17px;
     margin-left: auto;
     margin-right: auto;
         max-width: 475px;
 "></textarea>
 
-<div class='ddssd' >I would like to publish...
+<div class='ddssd' >{{tipoProfile == 1 ? 'I would like to publish...' : 'I search people to publish for...'}} 
     <select ng-model='usuario.opcion11'>
-        <option value='1'>tech</option>
-        <option value='2'>clothes</option>
+        <option value='1'>technology</option>
+        <option value='2'>sports</option>
+        <option value='3'>music</option>
+        <option value='4'>men's clothes</option>
+        <option value='5'>women's clothing</option>
+        <option value='6'>social networking</option>
+        <option value='7'>audio</option>
+        <option value='8'>video</option>
+        <option value='9'>photography</option>
+        <option value='10'>movies</option>
+        <option value='11'>charity</option>
+        <option value='12'>design</option>
     </select>
 
       <select ng-model='usuario.opcion12'>
-        <option value='1'>tech</option>
-        <option value='2'>clothes</option>
+        <option value='1'>technology</option>
+        <option value='2'>sports</option>
+        <option value='3'>music</option>
+        <option value='4'>men's clothes</option>
+        <option value='5'>women's clothing</option>
+        <option value='6'>social networking</option>
+        <option value='7'>audio</option>
+        <option value='8'>video</option>
+        <option value='9'>photography</option>
+        <option value='10'>movies</option>
+        <option value='11'>charity</option>
+        <option value='12'>design</option>
     </select>
 
 
@@ -141,17 +162,25 @@
 </div>
 
 
-<div class='ddssd'>My audience are mostly ... 
+<div class='ddssd'>{{tipoProfile == 1 ? 'My audience is...' : 'My target audience...'}}   
     <select ng-model='usuario.opcion21'>
-        <option value='1'>young</option>
-        <option value='2'>girls</option>
-         <option value='3'>boys</option>
+        <option value='1'>mostly girls</option>
+        <option value='2'>mostly guys</option>
+        <option value='3'>young people</option>
+        <option value='4'>adults</option>
+        <option value='5'>kids</option>
+        <option value='6'>old people</option>
+        <option value='7'>various</option>
     </select>
 
-    <select ng-model='usuario.publishFor22'>
-        <option value='1'>young</option>
-        <option value='2'>girls</option>
-         <option value='3'>boys</option>
+    <select ng-model='usuario.opcion22'>
+       <option value='1'>mostly girls</option>
+        <option value='2'>mostly guys</option>
+        <option value='3'>young people</option>
+        <option value='4'>adults</option>
+        <option value='5'>kids</option>
+        <option value='6'>old people</option>
+        <option value='7'>various</option>
     </select>
 
 
