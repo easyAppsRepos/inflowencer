@@ -226,13 +226,39 @@ $scope.cuenta={};
 $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
 
+  $scope.getCategorias = function(numero){
+console.log(numero);
+       return numero == 1 ? 'technology' : numero == 2 ? 'sports' : numero == 3 ? 'music' 
+       : numero == 4 ? "men's clothes" : numero == 5 ? "women's clothes" : 
+       numero == 6 ? "social networking" : numero == 7 ? "audio" :  numero == 8 ? "video" :
+       numero == 9 ? "photography" : numero == 10 ? "movies" :  numero == 11 ? "charity" :
+       numero == 12 ? "design" : "";
+
+    
+  }
+
+    $scope.goPerfil = function( idUsuario){
+
+  console.log(idUsuario);
+  $state.go('tab.chat-detailHome', {idUsuario: idUsuario});
+
+  }
+
+
+
+
     $scope.getTop = function(){
+
+      console.log($scope.userData);
       $ionicLoading.show();
-      api.getTop().then(function (data) {
+      api.getTop($scope.userData.instagramId).then(function (data) {
+        console.log(data);
       console.log(data.data[0]);
       if(data){
-      $scope.listaInfluencers = data.data[0];
-      $scope.listaStores = data.data[1];
+      $scope.listaInfluencers = data.data[1];
+      $scope.listaStores = data.data[0];
+           $scope.storeRank = data.data[2][0].asStore;
+                $scope.influencerRank = data.data[2][0].asInfluencer;
       }
       else{
       alert('Ha ocurrido un error');
@@ -274,6 +300,31 @@ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
         $ionicLoading.hide();
         });
       } 
+
+
+
+        $scope.marcarCompletado = function(idR){
+
+           $ionicLoading.show();
+          api.cambiarEstadoRequest({idRequest:idR, estado:3}).then(function (data) {
+
+          console.log(data);
+        //data.data.users
+        if(data){
+   
+          console.log('listo');
+         $scope.enviarReq();
+          //$state.go('tab.dash');
+        }
+        else{
+          alert('Ha ocurrido un error');
+        }
+        }).finally(function () {
+        $ionicLoading.hide();
+        });
+      } 
+
+
 
   $scope.rechazarP = function(idR){
 
@@ -552,7 +603,39 @@ function executeScriptCallBack(params) {
 })
 
 .controller('paymentMethodCtrl', function($scope) {})
-.controller('historyCtrl', function($scope) {})
+
+
+.controller('historyCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+  $scope.buscador={};
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+
+  var getRequests = function(){
+
+      $ionicLoading.show();
+      api.getHistory($scope.userData.instagramId).then(function (data) {
+
+        console.log(data.data.data);
+        $scope.resultados = data.data.data || [];
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+          //$scope.$broadcast('scroll.refreshComplete');
+       
+        });
+
+  }
+
+
+  getRequests();
+
+
+
+
+
+})
 .controller('notisCtrl', function($scope) {})
 
 .controller('personalCtrl', function($scope, api, $ionicLoading, $state ) {
@@ -611,6 +694,10 @@ if(palabra.length > 2){      $ionicLoading.show();
   };*/
 
   $scope.buscador={};
+
+
+  $scope.filtro={};
+
   $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
 
@@ -623,10 +710,12 @@ if(palabra.length > 2){      $ionicLoading.show();
 
 
   $scope.buscarPalabra = function(palabra){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+if(palabra.length > 2){      
 
-if(palabra.length > 2){      $ionicLoading.show();
+      $ionicLoading.show();
 
-
+ 
       api.buscarUsuario(palabra).then(function (data) {
 
         console.log(data.data.users);
@@ -644,6 +733,23 @@ if(palabra.length > 2){      $ionicLoading.show();
   }
 
 
+    $scope.listarTodos = function(palabra){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+
+      $ionicLoading.show();
+      api.listarTodos().then(function (data) {
+        $scope.buscador.palabra = '';
+        $scope.resultados= data.data.users;
+        }).finally(function () {
+        $ionicLoading.hide();   
+        });
+        
+
+  }
+
+
+
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, api, $state, $ionicLoading) {
@@ -652,8 +758,12 @@ if(palabra.length > 2){      $ionicLoading.show();
 
 
     var token = window.localStorage.getItem('tokInfl') || undefined;
-    console.log(token);
-    console.log($stateParams.idUsuario);
+    //console.log($scope.userData);
+    //console.log($stateParams.idUsuario);
+   $scope.mismoUsuario = false;
+    if($scope.userData.instagramId == $stateParams.idUsuario){
+      $scope.mismoUsuario = true;
+    }
 
     $ionicLoading.show();
     api.getDataUser($stateParams.idUsuario).then(function (events) {
@@ -672,6 +782,34 @@ if(palabra.length > 2){      $ionicLoading.show();
     $scope.abrirReq = function(){
         $state.go('tab.newRequest', {idUsuario: $stateParams.idUsuario});
     }
+
+     $scope.abrirReq2 = function(){
+        $state.go('tab.newRequestHome', {idUsuario: $stateParams.idUsuario});
+    }
+
+
+
+  $scope.getCategorias = function(numero){
+console.log(numero);
+       return numero == 1 ? 'technology' : numero == 2 ? 'sports' : numero == 3 ? 'music' 
+       : numero == 4 ? "men's clothes" : numero == 5 ? "women's clothes" : 
+       numero == 6 ? "social networking" : numero == 7 ? "audio" :  numero == 8 ? "video" :
+       numero == 9 ? "photography" : numero == 10 ? "movies" :  numero == 11 ? "charity" :
+       numero == 12 ? "design" : "";
+
+    
+  }
+
+    $scope.getCategorias2 = function(numero){
+
+       return numero == 1 ? 'mostly girls' : numero == 2 ? 'mostly guys' : numero == 3 ? 'young people' 
+       : numero == 4 ? "adults" : numero == 5 ? "kids" : 
+       numero == 6 ? "old people" : numero == 7 ? "various" : "";
+
+    
+  }
+
+
 
 
 

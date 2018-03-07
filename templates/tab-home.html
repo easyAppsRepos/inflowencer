@@ -11,9 +11,26 @@
         padding-bottom: 24px;">
         <div class="tituloHome">Top Influencers - This week</div>
 
+
+
+<div ng-if='userData.tipoCuenta==1 && influencerRank' style="
+    text-align:  center;
+    color:  white;
+    font-family:  Lato;
+    letter-spacing:  6px;
+    font-size: 15px;
+    line-height: 25px;
+">MY POSITION<br> <span style="
+    font-size: 27px;
+    font-weight:  800;
+">{{influencerRank}}</span></div>
+
+
+
+
         <div>
 
-            <div class="iList" ng-repeat='i in listaInfluencers' >
+            <div class="iList" ng-repeat='i in listaInfluencers' ng-click='goPerfil(i.instagramId)'>
                 <span style="
                    display: inline-block;
     font-size: 16px;
@@ -43,16 +60,27 @@
                       display: block;
                           font-size: 13px;
                       ">deals: {{i.deals || 0}}</span>
-                      <span style="
-                      display: block;
-                          font-size: 13px;
-                      ">new followers: {{i.followers || 0}}</span>
+              
                 </div>
             </div>
 
 
 
         </div>
+<div style="width:100%;text-align:center">
+        <button style='padding: 11px 44px;
+    background-color: #ffc800;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-family: Lato;
+    color: white;
+    border: none !important;
+    border-radius: 2px;
+    margin-top: 40px;' ui-sref='tab.chats'>See all influencers</button>
+</div>
+
+
+
 
       </div>
 
@@ -61,13 +89,34 @@
     margin-top: 24px;
     margin-left: 13px;
     margin-right: 13px;
-        padding-bottom: 24px;text-align: center;">
-        <div class="tituloHome">Top stores/sellers - This week</div>
+        padding-bottom: 24px;">
+        <div class="tituloHome">Top stores/sellers</div>
+
+
+
+<div ng-if='userData.tipoCuenta==2 && storeRank' style="
+    text-align:  center;
+    color:  white;
+    font-family:  Lato;
+    letter-spacing:  6px;
+    font-size: 15px;
+    line-height: 25px;
+">MY POSITION<br> <span style="
+    font-size: 27px;
+    font-weight:  800;
+">{{storeRank}}</span></div>
+
+
 
         <div>
 
-            <div class="iList" ng-repeat='s in listaStores'> 
-                <img ng-src="{{s.imagen}}" style="
+            <div class="iList" ng-repeat='i in listaStores'  ng-click='goPerfil(i.instagramId)'>
+                <span style="
+                   display: inline-block;
+    font-size: 16px;
+    vertical-align: -webkit-baseline-middle;
+                ">{{$index + 1}}.</span>
+                <img ng-src="{{i.imagen}}" style="
                  
                 display: inline-block;
                 height: 50px;
@@ -85,30 +134,28 @@
                       <span style="
                       display: block;
                           font-size: 16px;
-                              text-decoration: underline;    margin-bottom: 5px;
-                      ">@{{s.username}}</span>
+                              text-decoration: underline;
+                      ">@{{i.username}}</span>
                       <span style="
                       display: block;
                           font-size: 13px;
-                      ">category: <span class='etiquetaTop'>clothes</span><span class='etiquetaTop'  >girls</span></span>
-                   
+                      ">category: </span>
+
+                                       <span style="
+                      display: inline-block;
+                          font-size: 13px;
+                      "><span ng-if='i.opcion11' class='etiquetaTop'>{{getCategorias(i.opcion11)}}</span><span ng-if='i.opcion12' class='etiquetaTop'  >{{getCategorias(i.opcion12)}}</span></span>
+              
                 </div>
             </div>
+
+
 
         </div>
 
 
-<button style='padding: 11px 44px;
-    background-color: #ffc800;
-    font-size: 18px;
-    letter-spacing: 1px;
-    font-family: Lato;
-    color: white;
-    border: none !important;
-    border-radius: 2px;
-    margin-top: 40px;' ui-sref='tab.chats'>See all stores</button>
-      </div>
 
+      </div>
 
 
 

@@ -14,7 +14,7 @@
 
   
    
-  <div ng-repeat='r in requests' ui-sref="tab.requestInfl({idRequest: r.idRequest})"  class='notiBtn' style="  background: #5666b8;">
+  <div ng-repeat='r in requests' ui-sref="tab.requestInfl({idRequest: r.idRequest})"  class='notiBtn'    ng-class="{ 'colorStore': userData.instagramId == r.idStore, 'colorInflu': userData.instagramId == r.idInfluencer }"  >
     
 
        <p ng-if='userData.instagramId == r.idStore' style="    font-size: 25px;

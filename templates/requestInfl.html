@@ -128,9 +128,26 @@
     " ng-click='rechazarP(request.idRequest)' >reject</div>
 
   </div>
+<div ng-if='request.estado>=0' style="    text-align: center;
+    color: white;
+    margin-top: 25px;
+    font-size: 18px;
+    font-family: Lato2;
+    font-weight: 800;">
+<span style="padding-left: 10px;
+   ">{{request.estado==0 ? 'Waiting for approval...' : request.estado == 1 ? 'Approved' : request.estado == 2 ? 'Rejected' : request.estado == 3 ? 'Completed' : 'Unknown'}}</span>
+<br>
+       <button  ng-if='request.estado==1 && request.idStore == userData.instagramId' ng-if='!mismoUsuario && dataUser.tipoCuenta == 1' style="padding: 7px 30px;
+    border: none !important;
+    margin-top: 18px;
+    background-color: #007eff;
+    color: white;
+    font-family: LatoL;
+    font-weight: 800;
+    border-radius: 2px;" ng-click='marcarCompletado(request.idRequest)'>Mark as completed</button>
 
 
-
+</div>
 
   </ion-content>
 </ion-view>

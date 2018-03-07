@@ -42,18 +42,47 @@
     padding: 0px !important;
 }
 
+
+.botonWaiting{    color: #FFEB3B;
+    font-size: 15px;}
+
+.item-checkbox{
+        border: none !important;
+}
+.selectBuscar{
+        margin-left: 15% !important; 
+    width: 70% !important;
+    border: none !important;
+        margin-top: 12px;
+}
+.botonAcepted{    color: #4CAF50;
+    font-size: 15px;}
+
+
+.botonRejected{    color: #f33426;
+    font-size: 15px;}
+
+
+
+
 .bar .button.back-button {
 
     color: white !important;
 }
 
+.colorStore{background: #0090b4 !important}
+.colorInflu{background: #5666b8 !important}
+
 
 .etiquetaTop{
     background: white;
     color: #444;
+    font-size: 11px;
     border-radius: 19px;
     padding: 1px 5px;
-    margin-left: 5px;
+    margin-right: 5px;
+    display: block;
+    margin-top: 4px;
 }
 
 
@@ -113,7 +142,7 @@
 .bntH{
 
 
-background-color: #0090b4;
+background-color: #0090b4 !important;
     width: 90%;
     height: 50px;
     line-height: 0px !important;

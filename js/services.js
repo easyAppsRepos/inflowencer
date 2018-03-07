@@ -135,6 +135,20 @@ angular.module('starter.services', [])
             });
         },
 
+
+         getHistory:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/getHistory', {id:user},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+        
+
            enviarReq:function(user){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/enviarReq', user,{headers:{'Content-Type': 'application/json'}})
@@ -152,7 +166,7 @@ angular.module('starter.services', [])
 
             getTop:function(user){  
         //  var dusuario = {body:JSON.stringify({usuario})};
-            return  $http.post(serverConfig.url+'/getTop',{headers:{'Content-Type': 'application/json'}})
+            return  $http.post(serverConfig.url+'/getTop',{idUser:user},{headers:{'Content-Type': 'application/json'}})
             .then(function(response) {
             return response;
             }, function(response) {
@@ -203,6 +217,20 @@ angular.module('starter.services', [])
             return undefined;
             });
         },
+
+            listarTodos:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/listarTodos',{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
 
 
            verificarLog:function(userInsta){  

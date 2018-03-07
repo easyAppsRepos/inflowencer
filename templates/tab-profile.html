@@ -23,6 +23,7 @@
     letter-spacing: 2px;
     font-size: 21px;
     margin-top: 20px;">@{{dataUser.username}} <br> ({{dataUser.tipoCuenta == 1 ? 'influencer' : 'store'}})</p>
+
 <div style="
   margin-top: 35px;
 
@@ -41,9 +42,10 @@
     letter-spacing: 1px;
     height: 96px;
     vertical-align: text-bottom;
-        line-height: 23px;
-    ">Avg likes <br> per post <br> <span style="    font-size: 23px;
-    letter-spacing: 3px;">{{dataUser.media}}</span></div>
+        line-height: 34px;
+            width: 30%;
+    ">Deals <br> <span style="    font-size: 36px;
+    letter-spacing: 3px;">{{dataUser.tipoCuenta == 1 ? (dataUser.dealsInfluencer || 0) : dataUser.tipoCuenta == 2 ? (dataUser.dealsStore || 0) : 0}}</span></div>
 <img style="
 
         height: 96px;
@@ -60,9 +62,12 @@
     height: 96px;
     vertical-align: text-bottom;
     line-height: 34px;
+        width: 30%;
     ">Followers <br> <span style="font-size:36px">{{dataUser.followers}}<span></span></span></div>
 
 </div>
+
+
     
  <div style="
     text-align: center;

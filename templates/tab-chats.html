@@ -15,7 +15,7 @@
         </ion-option-button>
       </ion-item>
     </ion-list> --> 
-<p style="margin-top:40px;text-align:center; letter-spacing:1px; font-size:16px">search for influencer / stores</p>
+<p style="margin-top:40px;text-align:center; letter-spacing:1px; font-size:16px">search for influencer</p>
 
 <div style="text-align:center">
 
@@ -27,9 +27,29 @@
     font-family: Lato2;
     margin-left: 15%;" type="text" placeholder="@user" ng-model="buscador.palabra" ng-change='buscarPalabra(buscador.palabra)'>
 
+
+
+        <button style='    padding: 3px 44px;
+    background-color: #ffc800;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-family: Lato;
+    color: white;
+    border: none !important;
+    margin-top: 15px;
+    border-radius: 3px;' ng-click='listarTodos()'>See all influencers</button>
+
+
+
+
     </div>
 
-
+<!--     <div class="selectBuscar">
+    <ion-list >
+        <ion-checkbox ng-model="filtro.option1">Only influencers</ion-checkbox>
+    </ion-list>
+    </div>
+ -->
 
   <div  style='    color: #444;
     text-align: center;

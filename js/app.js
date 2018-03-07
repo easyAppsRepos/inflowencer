@@ -164,6 +164,26 @@ if(localStorage.getItem('tokInfl') == null ||
       }
     })
 
+        .state('tab.chat-detailHome', {
+      url: '/home/:idUsuario',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/chat-detailH.html',
+          controller: 'ChatDetailCtrl'
+        }
+      }
+    })
+
+      .state('tab.newRequestHome', {
+      url: '/newRequest/:idUsuario',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/request.html',
+          controller: 'RequestCtrl'
+        }
+      }
+    })
+
 
       .state('tab.newRequest', {
       url: '/newRequest/:idUsuario',

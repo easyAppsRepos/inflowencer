@@ -1,4 +1,4 @@
-<ion-view view-title="Welcome, @vichudo">
+<ion-view view-title="Welcome, @{{userData.username}}">
   <ion-content >
 
 
@@ -15,15 +15,8 @@
 ">History</p>
 
 
-<button class="bntH"><span class="sp1">deal with </span> <span class="sp2">@casechile</span></button>
+<button class="bntH" ng-repeat='r in resultados' ><span class="sp1">deal with </span> <span class="sp2">@{{r.idInfluencer == userData.instagramId ? r.usernameStore : r.idStore == userData.instagramId ? r.usernameInfluencer : " "}}</span></button>
 
-<button class="bntH"><span class="sp1">deal with </span> <span class="sp2">@casechile</span></button>
-
-<button class="bntH"><span class="sp1">deal with </span> <span class="sp2">@casechile</span></button>
-
-<button class="bntH"><span class="sp1">deal with </span> <span class="sp2">@casechile</span></button>
-
-<button class="bntH"><span class="sp1">deal with </span> <span class="sp2">@casechile</span></button>
 
 
 
