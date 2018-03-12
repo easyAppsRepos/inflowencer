@@ -119,6 +119,7 @@ console.log(token);
         console.log(products);
         $ionicLoading.hide();
         $scope.products = products;
+        $scope.productoF = products[0];
       })
       .catch(function (err) {
         $ionicLoading.hide();
@@ -127,7 +128,7 @@ console.log(token);
   };
 
   $scope.buy = function (productId) {
-
+    console.log(  $scope.productoF);
     $ionicLoading.show({ template: spinner + 'Purchasing...' });
     inAppPurchase
       .buy(productId)
