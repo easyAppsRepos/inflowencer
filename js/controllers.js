@@ -112,7 +112,7 @@ console.log(token);
 
   var spinner = '<ion-spinner icon="dots" class="spinner-stable"></ion-spinner><br/>';
 
-  $scope.loadProducts(); 
+
 
   
   $scope.getRequests = function(){
@@ -151,6 +151,8 @@ console.log(token);
       });
   };
 
+  $scope.loadProducts(); 
+
 
     $scope.getReceipt = function () {
     $ionicLoading.show({ template: spinner + 'get receip...' });
@@ -171,7 +173,15 @@ console.log(token);
 
 
 
-
+/*
+      .then(function () {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Purchase',
+          template: 'Purchase was successful'
+        });
+        console.log('consume done!');
+        $ionicLoading.hide();
+      })*/
 
   $scope.buy = function (productId) {
     console.log(  $scope.productoF);
@@ -184,16 +194,7 @@ console.log(token);
         $scope.receip = data.receipt;
         //console.log('consuming transactionId: ' + data.transactionId);
         //return inAppPurchase.consume(data.type, data.receipt, data.signature);
-      })/*
-      .then(function () {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Purchase',
-          template: 'Purchase was successful'
-        });
-        console.log('consume done!');
-        $ionicLoading.hide();
-      })*/
-      .catch(function (err) {
+      }).catch(function (err) {
         $ionicLoading.hide();
         console.log(err);
         $ionicPopup.alert({
