@@ -127,6 +127,28 @@ console.log(token);
       });
   };
 
+
+    $scope.getReceipt = function () {
+    $ionicLoading.show({ template: spinner + 'Loading Products...' });
+    inAppPurchase
+    .getReceipt()
+    .then(function (receipt) {
+    console.log(receipt);
+     $ionicLoading.hide();
+    })
+    .catch(function (err) {
+    console.log(err);
+     $ionicLoading.hide();
+    });
+  };
+
+
+
+
+
+
+
+
   $scope.buy = function (productId) {
     console.log(  $scope.productoF);
     $ionicLoading.show({ template: spinner + 'Purchasing...' });
