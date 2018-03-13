@@ -102,10 +102,6 @@
  <allow-navigation href="*" />
 
 
-
-
-
-
 <icon src="icon.png" />
 
     <icon gap:platform="ios" height="40" src="res/icon/ios/40.png" width="40" />
@@ -123,33 +119,6 @@
     <icon gap:platform="ios" height="100" src="res/icon/ios/100.png" width="100" />
 
    <icon gap:platform="ios" height="120" src="res/icon/ios/120.png" width="120" />
-
-
-
-<!-- 
-
-<splash src="splash.png" />
-
-
-
-<splash src="res/splash/ios/320x480.png" platform="ios" width="320" height="480" />
-<splash src="res/splash/ios/640x960.png" platform="ios" width="640" height="960" />
-
-
-<splash src="res/splash/ios/640x1136.png" platform="ios" width="640" height="1136" />
-
-
-<splash src="res/splash/ios/750x1334.png" platform="ios" width="750" height="1334" />
-<splash src="res/splash/ios/1242x2208.png" platform="ios" width="1242" height="2208" />
-
-
-
-<splash src="res/splash/ios/768x1024.png" platform="ios" width="768" height="1024" />
-
-
-<splash src="res/splash/ios/1536x2048.png" platform="ios" width="1536" height="2048" />
-
--->
 
 
 
