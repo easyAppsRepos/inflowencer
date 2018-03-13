@@ -106,7 +106,7 @@ console.log(token);
 
 
 })
-.controller('payCtrl', function($scope, $ionicPlatform, $ionicLoading, $ionicPopup) {
+.controller('payCtrl', function($scope, $ionicPlatform, $ionicLoading, $ionicPopup, api) {
 
   var productIds = ['com.inflowencer.app']; // <- Add your product Ids here
 
