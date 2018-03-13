@@ -108,6 +108,9 @@ console.log(token);
 })
 .controller('payCtrl', function($scope, $ionicPlatform, $ionicLoading, $ionicPopup, api) {
 
+$scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
   var productIds = ['com.inflowencer.app']; // <- Add your product Ids here
 
   var spinner = '<ion-spinner icon="dots" class="spinner-stable"></ion-spinner><br/>';
@@ -186,7 +189,13 @@ console.log(token);
         console.log(data);
         console.log(JSON.stringify(data));
         $scope.receip = data.receipt;
-           $ionicLoading.hide();
+
+          api.insertReceip({idUsuario:$scope.userData.instagramId,receip:$scope.receip}).then(function (data) {
+          console.log(data);
+          }).finally(function () {
+          $ionicLoading.hide();
+          });
+
         //console.log('consuming transactionId: ' + data.transactionId);
         //return inAppPurchase.consume(data.type, data.receipt, data.signature);
       }).catch(function (err) {
