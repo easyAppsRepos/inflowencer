@@ -36,6 +36,7 @@ angular.module('starter.controllers', [])
 
   }
 
+
   getRequests();
 /*  if(userData){
 
@@ -111,6 +112,29 @@ console.log(token);
 
   var spinner = '<ion-spinner icon="dots" class="spinner-stable"></ion-spinner><br/>';
 
+
+
+  
+  $scope.getRequests = function(){
+
+      if( $scope.receip){
+      $ionicLoading.show();
+      
+      api.verificarReceip({receip:$scope.receip}).then(function (data) {
+
+        console.log(data);
+
+        }).finally(function () {
+        $ionicLoading.hide();
+        });
+      }
+      else{console.log('reic no defined')}
+
+
+  }
+
+
+
   $scope.loadProducts = function () {
     $ionicLoading.show({ template: spinner + 'Loading Products...' });
     inAppPurchase
@@ -118,7 +142,7 @@ console.log(token);
       .then(function (products) {
         console.log(products);
         $ionicLoading.hide();
-        $scope.products = products;
+        //$scope.products = products;
         $scope.productoF = products[0];
       })
       .catch(function (err) {
@@ -129,7 +153,7 @@ console.log(token);
 
 
     $scope.getReceipt = function () {
-    $ionicLoading.show({ template: spinner + 'Loading Products...' });
+    $ionicLoading.show({ template: spinner + 'get receip...' });
     inAppPurchase
     .getReceipt()
     .then(function (receipt) {
@@ -155,24 +179,26 @@ console.log(token);
     inAppPurchase
       .buy(productId)
       .then(function (data) {
+        console.log(data);
         console.log(JSON.stringify(data));
-        console.log('consuming transactionId: ' + data.transactionId);
-        return inAppPurchase.consume(data.type, data.receipt, data.signature);
-      })
+        $scope.receip = data.receipt;
+        //console.log('consuming transactionId: ' + data.transactionId);
+        //return inAppPurchase.consume(data.type, data.receipt, data.signature);
+      })/*
       .then(function () {
         var alertPopup = $ionicPopup.alert({
-          title: 'Purchase was successful!',
-          template: 'Check your console log for the transaction data'
+          title: 'Purchase',
+          template: 'Purchase was successful'
         });
         console.log('consume done!');
         $ionicLoading.hide();
-      })
+      })*/
       .catch(function (err) {
         $ionicLoading.hide();
         console.log(err);
         $ionicPopup.alert({
-          title: 'Something went wrong',
-          template: 'Check your console log for the error details'
+          title: 'Ups! Something went wrong',
+          template: "Sorry, we can't do this now"
         });
       });
 
