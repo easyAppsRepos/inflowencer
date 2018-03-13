@@ -255,7 +255,15 @@ if(localStorage.getItem('tokInfl') == null ||
         }
       }
     })
-
+      .state('tab.paymentMethod2', {
+      url: '/paymentMethod',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/paymentMethod.html',
+          controller: 'payCtrl'
+        }
+      }
+    })
 
         .state('tab.paymentMethod', {
       url: '/paymentMethod',

@@ -132,7 +132,36 @@ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
   }
 
 
+  $scope.verificarSuscripcion = function(palabra){
+console.log('verificarSuscripcion');
+      $ionicLoading.show();
+      api.verificarSuscripcion({idUsuario: $scope.userData.instagramId}).then(function (data) {
+
+        console.log(data);
+        $scope.cargaTerminada = true;
+
+        if(data.data.suscription){
+          $scope.suscripcion = true;
+          $scope.loadProducts(); 
+        }
+        else{
+          $scope.suscripcion = false;
+          $scope.loadProducts(); 
+        }  
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+      
+
+  }
+
+$scope.verificarSuscripcion();
   $scope.loadProducts = function () {
+
+
+
     $ionicLoading.show({ template: spinner });
     inAppPurchase
       .getProducts(productIds)
@@ -148,7 +177,7 @@ $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
       });
   };
 
-  $scope.loadProducts(); 
+  //$scope.loadProducts(); 
 
 
     $scope.getRecesipt = function () {
@@ -734,23 +763,13 @@ if(palabra.length > 2){      $ionicLoading.show();
 
 
 .controller('ChatsCtrl', function($scope, api, $ionicLoading, $state ) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-/*
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };*/
+
 
   $scope.buscador={};
 
 
   $scope.filtro={};
+  $scope.cargaTerminada = false;
 
   $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
@@ -762,6 +781,38 @@ if(palabra.length > 2){      $ionicLoading.show();
 
   }
 
+  $scope.goPremium = function(){
+
+    $state.go('tab.paymentMethod2');
+  }
+
+
+
+  $scope.verificarSuscripcion = function(palabra){
+console.log('verificarSuscripcion');
+      $ionicLoading.show();
+      api.verificarSuscripcion({idUsuario: $scope.userData.instagramId}).then(function (data) {
+
+        console.log(data);
+        $scope.cargaTerminada = true;
+
+        if(data.data.suscription){
+          $scope.suscripcion = true;
+        }
+        else{
+          $scope.suscripcion = false;
+        }  
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+      
+
+  }
+
+
+  $scope.verificarSuscripcion();
 
   $scope.buscarPalabra = function(palabra){
 //console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
@@ -872,6 +923,12 @@ console.log(numero);
 })
 
 .controller('AccountCtrl', function($scope, $state, $ionicHistory, $ionicLoading, $timeout) {
+
+
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+
   $scope.settings = {
     enableFriends: true
   };

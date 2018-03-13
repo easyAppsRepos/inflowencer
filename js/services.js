@@ -123,6 +123,20 @@ angular.module('starter.services', [])
             });
         },
 
+            verificarSuscripcion:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/verificarSuscripcion', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
+
 
         insertReceip:function(user){  
         //  var dusuario = {body:JSON.stringify({usuario})};

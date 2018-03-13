@@ -1,7 +1,41 @@
 
 <ion-view view-title="Welcome, @{{userData.username}}">
   <ion-content  style="font-family:Lato">
+<div ng-if='cargaTerminada  '>
 
+<div ng-if="!suscripcion" style="
+    text-align:  center;
+    padding: 15%;
+    color:  darkgray;
+    font-family: Lato;
+    letter-spacing:  1px;
+    margin-top: 10%;
+">
+    
+    <span style="
+    display: block;
+    font-size:  23px;
+">Do you want to search?</span>
+    <span style="
+    font-size: 17px;
+    margin-top: 20px;
+    display:  block;
+    text-align: center;
+">The search option is only available for premium users</span>
+    <button style="
+    margin-top: 25px;
+    font-family:  Lato;
+    background-color:  #0090b4 !important;
+    color:  white;
+    border:  none !important;
+    padding: 10px 35px;
+    font-size:  14px;
+" ng-click='goPremium()'>Get Premium</button>
+</div>
+
+
+
+<div ng-if='suscripcion'>
 
 <!--     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
@@ -67,8 +101,9 @@ There are no results in the search . . .
         <img ng-src="{{r.imagen}}"><span>{{r.username}}</span>
 
     </div>
+    </div>
 
-
+</div>
 
   </ion-content>
 </ion-view>
