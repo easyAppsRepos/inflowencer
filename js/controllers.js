@@ -115,7 +115,7 @@ console.log(token);
 
 
   
-  $scope.getRequests = function(){
+  $scope.getReceipt = function(){
 
       if( $scope.receip){
       $ionicLoading.show();
@@ -154,7 +154,7 @@ console.log(token);
   $scope.loadProducts(); 
 
 
-    $scope.getReceipt = function () {
+    $scope.getRecesipt = function () {
     $ionicLoading.show({ template: spinner + 'get receip...' });
     inAppPurchase
     .getReceipt()
