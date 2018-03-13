@@ -112,11 +112,7 @@ console.log(token);
 
   var spinner = '<ion-spinner icon="dots" class="spinner-stable"></ion-spinner><br/>';
 
-
-
-  
   $scope.getReceipt = function(){
-
       if( $scope.receip){
       $ionicLoading.show();
 
@@ -130,9 +126,7 @@ console.log(token);
       }
       else{console.log('reic no defined')}
 
-
   }
-
 
 
   $scope.loadProducts = function () {
