@@ -192,6 +192,7 @@ console.log(token);
         console.log(data);
         console.log(JSON.stringify(data));
         $scope.receip = data.receipt;
+           $ionicLoading.hide();
         //console.log('consuming transactionId: ' + data.transactionId);
         //return inAppPurchase.consume(data.type, data.receipt, data.signature);
       }).catch(function (err) {
