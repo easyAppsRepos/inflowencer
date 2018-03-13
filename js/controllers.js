@@ -112,14 +112,14 @@ console.log(token);
 
   var spinner = '<ion-spinner icon="dots" class="spinner-stable"></ion-spinner><br/>';
 
-
+  $scope.loadProducts(); 
 
   
   $scope.getRequests = function(){
 
       if( $scope.receip){
       $ionicLoading.show();
-      
+
       api.verificarReceip({receip:$scope.receip}).then(function (data) {
 
         console.log(data);
@@ -136,7 +136,7 @@ console.log(token);
 
 
   $scope.loadProducts = function () {
-    $ionicLoading.show({ template: spinner + 'Loading Products...' });
+    $ionicLoading.show({ template: spinner });
     inAppPurchase
       .getProducts(productIds)
       .then(function (products) {
