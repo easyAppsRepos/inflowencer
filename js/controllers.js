@@ -338,8 +338,8 @@ console.log(numero);
         console.log(data);
       console.log(data.data[0]);
       if(data){
-      $scope.listaInfluencers = data.data[1];
-      $scope.listaStores = data.data[0];
+      $scope.listaInfluencers = data.data[0];
+      $scope.listaStores = data.data[1];
            $scope.storeRank = data.data[2][0].asStore;
                 $scope.influencerRank = data.data[2][0].asInfluencer;
       }
@@ -544,7 +544,6 @@ function loadErrorCallBack(params) {
  console.log(window.location.href );
   console.log(params);
 
-  console.log()
  if(params.code==-1004 || params.code=='-1004' || params.code=='-6' ||  params.code == -6 ){
 
 
@@ -566,7 +565,7 @@ function loadErrorCallBack(params) {
       //$scope.chats = events.data || [];
 
         api.verificarLog(events.data.data).then(function (eventss) {
-
+          console.log(eventss);
           if(!eventss){
 
             console.log('error');
@@ -682,6 +681,32 @@ function executeScriptCallBack(params) {
         $ionicLoading.hide();
 
         });
+
+
+
+      $scope.getCategorias = function(numero){
+console.log(numero);
+       return numero == 1 ? 'technology' : numero == 2 ? 'sports' : numero == 3 ? 'music' 
+       : numero == 4 ? "men's clothes" : numero == 5 ? "women's clothes" : 
+       numero == 6 ? "social networking" : numero == 7 ? "audio" :  numero == 8 ? "video" :
+       numero == 9 ? "photography" : numero == 10 ? "movies" :  numero == 11 ? "charity" :
+       numero == 12 ? "design" : "";
+
+    
+  }
+
+    $scope.getCategorias2 = function(numero){
+
+       return numero == 1 ? 'mostly girls' : numero == 2 ? 'mostly guys' : numero == 3 ? 'young people' 
+       : numero == 4 ? "adults" : numero == 5 ? "kids" : 
+       numero == 6 ? "old people" : numero == 7 ? "various" : "";
+
+    
+  }
+
+
+
+
 
 })
 

@@ -1,6 +1,8 @@
 <ion-view view-title="Welcome, @{{userData.username}}">
 
   <ion-content class='ttss' style="background-size: cover;background-color:#5666b8" >
+
+  <div ng-if='dataUser'>
 <!-- 
 <img src="img/logoLogin.png" style="    width: 80%;
     margin-left: 10%;
@@ -101,8 +103,9 @@
 
 <div class='ddssd' style="height: 77px;" ><span style="width: 100%;display: block;margin-bottom: 6px;">I would like to publish...</span>
     
-    <div class="vineta">tech</div>
-    <div class="vineta">clothes</div>
+    <div class="vineta" ng-if='dataUser.opcion11'>{{getCategorias(dataUser.opcion11)}}</div>
+    <div class="vineta" ng-if='dataUser.opcion12'>{{getCategorias(dataUser.opcion12)}}</div>
+
 
 
 
@@ -110,8 +113,8 @@
 
 <div class='ddssd' style="height: 77px;" ><span style="width: 100%;display: block;margin-bottom: 6px;">My audience are mostly ... </span>
     
-    <div class="vineta">girls</div>
-    <div class="vineta">boys</div>
+ <div class="vineta" ng-if='dataUser.opcion21'>{{getCategorias2(dataUser.opcion21)}}</div>
+    <div class="vineta" ng-if='dataUser.opcion22'>{{getCategorias2(dataUser.opcion22)}}</div>
 
 
 
@@ -120,7 +123,7 @@
 
     </div>
 
-
+</div>
 
     </ion-content>
 
