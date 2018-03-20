@@ -947,7 +947,7 @@ console.log(numero);
   
 })
 
-.controller('AccountCtrl', function($scope, $state, $ionicHistory, $ionicLoading, $timeout) {
+.controller('AccountCtrl', function($scope, $state, $ionicHistory, $ionicLoading, $timeout, api) {
 
 
   $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
@@ -961,14 +961,33 @@ console.log(numero);
 
 
 $scope.cerrarSesion = function(){
-$ionicLoading.show();
+
 
   window.localStorage.setItem( 'tokInfl', undefined);  
-  $state.go('login');
-  $timeout(function () {
+
+
+      $ionicLoading.show();
+    api.logoutIG().then(function (events) {
+      console.log(events);
+        $state.go('login');
+     // $scope.dataUser = events.data.user[0];
+      //$scope.chats = events.data || [];
+
+    }).finally(function () {
+
+          $ionicLoading.hide();
+          $timeout(function () {
           $ionicHistory.clearCache();
           $ionicLoading.hide();
-      }, 200)  
+          }, 200);
+
+
+        });
+
+
+
+  //https://www.instagram.com/accounts/logout/
+ 
 
 
 }

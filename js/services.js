@@ -70,6 +70,21 @@ angular.module('starter.services', [])
             });
         },
 
+
+            logoutIG:function(token){  
+            return  $http.get('https://www.instagram.com/accounts/logout/')
+            .then(function(response) {
+            //console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+             console.log('error');
+             //console.log(response);
+            return response;
+            });
+        },
+
+
         getDataInstagramUser:function(token,userID){  
 
             return  $http.get('https://api.instagram.com/v1/users/'+userID+'/?access_token='+token)
