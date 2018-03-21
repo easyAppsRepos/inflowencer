@@ -1,6 +1,13 @@
 <ion-view view-title="Welcome, @{{userData.username}}">
   <ion-content class="padding" style='background-color: white ;font-family: Lato;
             letter-spacing: 1px;'>
+
+                          <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="getTopRefresh()">
+  </ion-refresher>
+
+
 <div ng-if='listaInfluencers'>
 
 

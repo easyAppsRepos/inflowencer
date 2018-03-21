@@ -457,6 +457,34 @@ console.log(numero);
 
 
 
+
+    $scope.getTopRefresh = function(){
+
+      console.log($scope.userData);
+      $ionicLoading.show();
+      api.getTop($scope.userData.instagramId).then(function (data) {
+        console.log(data);
+      console.log(data.data[0]);
+      if(data){
+      $scope.listaInfluencers = data.data[0];
+      $scope.listaStores = data.data[1];
+           $scope.storeRank = data.data[2][0].asStore;
+                $scope.influencerRank = data.data[2][0].asInfluencer;
+
+                                $scope.newInfluencers = data.data[3];
+                $scope.newStores =data.data[4];
+                      $scope.$broadcast('scroll.refreshComplete');
+
+      }
+      else{
+      alert('Ha ocurrido un error');
+      }
+      }).finally(function () {
+      $ionicLoading.hide();
+      });     
+    }
+
+
     $scope.getTop = function(){
 
       console.log($scope.userData);
