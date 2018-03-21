@@ -126,6 +126,45 @@ angular.module('starter.services', [])
             });
         },
 
+
+          editarUsuario:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/editarUsuario', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+
+            busquedaAvanzada:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/busquedaAvanzada', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
+        
+          borrarRequest:function(user){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/borrarRequest', user,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+            return undefined;
+            });
+        },
+
             insertReceip:function(user){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/insertReceip', user,{headers:{'Content-Type': 'application/json'}})

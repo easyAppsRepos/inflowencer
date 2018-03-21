@@ -56,6 +56,95 @@ angular.module('starter.controllers', [])
   $scope.tipoProfile = $stateParams.tipoPerfil;
   var token = window.localStorage.getItem('tokInfl') || undefined;
 
+
+  $scope.cantSelect= 3;
+
+
+//ts
+$scope.someModelMultiple = [];
+$scope.selectables = [{nombre:'technology', id:1},
+                      {nombre:'sports', id:2},
+                      {nombre:'music', id:3},
+                      {nombre:"men's clothes", id:4},
+                      {nombre:"women's clothing", id:5},
+                      {nombre:'social networking', id:6},
+                      {nombre:'audio', id:7},
+                      {nombre:'video', id:8},
+                      {nombre:'photography', id:9},
+                      {nombre:'movies', id:10},
+                      {nombre:'charity', id:11},
+                      {nombre:'design', id:12},];
+
+
+
+                      $scope.someModelMultiple2 = [];
+$scope.selectables2 = [{nombre:'mostly girls', id:1},
+                      {nombre:'mostly guys', id:2},
+                      {nombre:'young people', id:3},
+                      {nombre:"adults", id:4},
+                      {nombre:"kids", id:5},
+                      {nombre:'old people', id:6}];
+
+
+
+
+/*            <option value='1'>mostly girls</option>
+        <option value='2'>mostly guys</option>
+        <option value='3'>young people</option>
+        <option value='4'>adults</option>
+        <option value='5'>kids</option>
+        <option value='6'>old people</option>
+        <option value='7'>various</option> 
+
+
+
+        <option value='1'>technology</option>
+        <option value='2'>sports</option>
+        <option value='3'>music</option>
+        <option value='4'>men's clothes</option>
+        <option value='5'>women's clothing</option>
+        <option value='6'>social networking</option>
+        <option value='7'>audio</option>
+        <option value='8'>video</option>
+        <option value='9'>photography</option>
+        <option value='10'>movies</option>
+        <option value='11'>charity</option>
+        <option value='12'>design</option>
+
+
+
+
+   
+
+
+        */
+
+//tes
+
+
+
+      $scope.getCategorias = function(numero){
+console.log(numero);
+       return numero == 1 ? 'technology' : numero == 2 ? 'sports' : numero == 3 ? 'music' 
+       : numero == 4 ? "men's clothes" : numero == 5 ? "women's clothes" : 
+       numero == 6 ? "social networking" : numero == 7 ? "audio" :  numero == 8 ? "video" :
+       numero == 9 ? "photography" : numero == 10 ? "movies" :  numero == 11 ? "charity" :
+       numero == 12 ? "design" : "";
+
+    
+  }
+
+    $scope.getCategorias2 = function(numero){
+
+       return numero == 1 ? 'mostly girls' : numero == 2 ? 'mostly guys' : numero == 3 ? 'young people' 
+       : numero == 4 ? "adults" : numero == 5 ? "kids" : 
+       numero == 6 ? "old people" : numero == 7 ? "various" : "";
+
+    
+  }
+
+
+
 console.log(token);
     api.getDataInstagram(token).then(function (events) {
       console.log(events.data.data);
@@ -72,6 +161,44 @@ console.log(token);
       $scope.goInstalog = function(){
 
     $state.go('instalog');
+  }
+
+        $scope.getterFunction = function(selectedItem){
+
+console.log(selectedItem);
+  }
+
+        $scope.verificarCantidad = function(){
+
+console.log('D');
+
+
+  }
+
+
+
+
+      $scope.seleccionado = function(newValue, oldValue){
+console.log(newValue);
+
+newValue[0] ? $scope.usuario.opcion11 = newValue[0].id : $scope.usuario.opcion11 = undefined;
+newValue[1] ? $scope.usuario.opcion12 = newValue[1].id : $scope.usuario.opcion12 = undefined;
+    //$state.go('instalog');
+  }
+
+
+        $scope.seleccionado2 = function(newValue, oldValue){
+
+          newValue[0] ? $scope.usuario.opcion21 = newValue[0].id : $scope.usuario.opcion21 = undefined;
+          newValue[1] ? $scope.usuario.opcion22 = newValue[1].id : $scope.usuario.opcion22 = undefined;
+
+console.log(newValue)
+    //$state.go('instalog');
+  }
+
+      $scope.abrirModalOpciones = function(){
+
+    //$state.go('instalog');
   }
 
 
@@ -342,6 +469,9 @@ console.log(numero);
       $scope.listaStores = data.data[1];
            $scope.storeRank = data.data[2][0].asStore;
                 $scope.influencerRank = data.data[2][0].asInfluencer;
+
+                                $scope.newInfluencers = data.data[3];
+                $scope.newStores =data.data[4];
       }
       else{
       alert('Ha ocurrido un error');
@@ -357,11 +487,13 @@ console.log(numero);
 })
 
 
-.controller('requestInflCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+.controller('requestInflCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory, $ionicPopup) {
 
  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
  
+
+
 
   $scope.aceptarP = function(idR){
 
@@ -433,6 +565,80 @@ console.log(numero);
   } 
 
 
+  $scope.showAlert = function(meesage, titu) {
+   var alertPopup = $ionicPopup.alert({
+     title: titu,
+     template: meesage
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+
+
+
+
+$scope.borrarReq=function(idRequest){
+
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Delete',
+     template: 'Are you sure you want to delete this request?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+
+       console.log('You are sure');
+
+            $ionicLoading.show();
+          api.borrarRequest({id:idRequest}).then(function (data) {
+
+        //  console.log(data.data.insertId);
+        //data.data.users
+        if(data.data){
+          $scope.showAlert('Request has been deleted!');
+          $ionicHistory.goBack(-1);
+         // alert('request enviada correctamente');
+          //$state.go('tab.dash');
+        }
+        else{
+          $scope.showAlert('UPS! Something wrong happend', 'Error');
+          //alert('UPS! Something wrong happend');
+        }
+        
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+
+
+     } else {
+       console.log('You are not sure');
+     }
+   });
+
+
+
+}
+
+
+
+
+
+    $scope.goPerfil = function( idUsuario){
+
+  console.log(idUsuario);
+  $state.go('tab.dash-detailHome', {idUsuario: idUsuario});
+
+  }
+
+
+
+
+
 
   $scope.enviarReq = function(){
 
@@ -445,14 +651,17 @@ console.log(numero);
 
           console.log(data.data.request[0]);
         //data.data.users
-        if(data){
+        if(data.data.request[0]){
    
           console.log(data.data.request[0].idInfluencer ==  $scope.userData.instagramId);
           $scope.request = data.data.request[0];
           //$state.go('tab.dash');
         }
         else{
-          alert('Ha ocurrido un error');
+          //alert('Ha ocurrido un error');
+          $scope.showAlert('This request has been deleted!', 'Not Found');
+          $ionicHistory.goBack(-1);
+
         }
         
 
@@ -472,12 +681,26 @@ console.log(numero);
 
 })
 
-.controller('RequestCtrl', function($scope, $state,$stateParams, api, $ionicLoading,$ionicHistory) {
+.controller('RequestCtrl', function($scope, $state,$stateParams, api, $ionicPopup, $ionicLoading,$ionicHistory) {
 
  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
 
  $scope.req = {};
+
+
+  $scope.showAlert = function(meesage) {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Success',
+     template: meesage
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+
+
 
   $scope.enviarReq = function(newRequest){
 
@@ -491,12 +714,13 @@ console.log(numero);
           console.log(data.data.insertId);
         //data.data.users
         if(data.data.insertId){
+          $scope.showAlert('Request has been sent!');
           $ionicHistory.goBack(-2);
-          alert('request enviada correctamente');
+         // alert('request enviada correctamente');
           //$state.go('tab.dash');
         }
         else{
-          alert('Ha ocurrido un error');
+          alert('UPS! Something wrong happend');
         }
         
 
@@ -664,12 +888,51 @@ function executeScriptCallBack(params) {
 
  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
 
+$scope.usuario = {};
+
+ $scope.editar = false;
+
+
+
+
+
+
+$scope.someModelMultiple = [];
+$scope.selectables = [{nombre:'technology', id:1},
+                      {nombre:'sports', id:2},
+                      {nombre:'music', id:3},
+                      {nombre:"men's clothes", id:4},
+                      {nombre:"women's clothing", id:5},
+                      {nombre:'social networking', id:6},
+                      {nombre:'audio', id:7},
+                      {nombre:'video', id:8},
+                      {nombre:'photography', id:9},
+                      {nombre:'movies', id:10},
+                      {nombre:'charity', id:11},
+                      {nombre:'design', id:12},];
+
+
+
+                      $scope.someModelMultiple2 = [];
+$scope.selectables2 = [{nombre:'mostly girls', id:1},
+                      {nombre:'mostly guys', id:2},
+                      {nombre:'young people', id:3},
+                      {nombre:"adults", id:4},
+                      {nombre:"kids", id:5},
+                      {nombre:'old people', id:6}];
+
+
+
+
 
     //var token = window.localStorage.getItem('tokInfl') || undefined;
     console.log($scope.userData.instagramId);
     //console.log($stateParams.idUsuario);
 
-    $ionicLoading.show();
+
+$scope.getProfileUser = function(){
+
+      $ionicLoading.show();
     api.getDataUser($scope.userData.instagramId).then(function (events) {
       console.log(events);
 
@@ -681,6 +944,12 @@ function executeScriptCallBack(params) {
         $ionicLoading.hide();
 
         });
+
+
+
+}
+
+  $scope.getProfileUser();
 
 
 
@@ -703,6 +972,65 @@ console.log(numero);
 
     
   }
+
+
+        $scope.seleccionado = function(newValue, oldValue){
+console.log(newValue);
+
+newValue[0] ? $scope.usuario.opcion11 = newValue[0].id : $scope.usuario.opcion11 = undefined;
+newValue[1] ? $scope.usuario.opcion12 = newValue[1].id : $scope.usuario.opcion12 = undefined;
+    //$state.go('instalog');
+  }
+
+
+        $scope.seleccionado2 = function(newValue, oldValue){
+
+          newValue[0] ? $scope.usuario.opcion21 = newValue[0].id : $scope.usuario.opcion21 = undefined;
+          newValue[1] ? $scope.usuario.opcion22 = newValue[1].id : $scope.usuario.opcion22 = undefined;
+
+console.log(newValue)
+    //$state.go('instalog');
+  }
+
+      $scope.editarPerfil = function(){
+         $scope.editar = true;
+         $scope.usuario=$scope.dataUser;
+         $scope.usuario.bio = $scope.dataUser.bioApp;
+    
+  }
+
+
+      $scope.guardarPerfil = function(){
+      $scope.usuario.idUsuario = $scope.userData.instagramId;
+       //  $scope.usuario=$scope.dataUser;
+     //    $scope.usuario.bio = $scope.dataUser.bioApp;
+
+     console.log($scope.usuario);
+     $scope.editar = false;
+
+     
+           $ionicLoading.show();
+    api.editarUsuario($scope.usuario).then(function (events) {
+      console.log(events);
+
+      //$scope.dataUser = events.data.user[0];
+      //$scope.chats = events.data || [];
+
+    }).finally(function () {
+
+       // $ionicLoading.hide();
+            $scope.editar = false;
+            $scope.getProfileUser();
+
+
+        });
+
+
+
+    
+  }
+
+
 
 
 
@@ -787,6 +1115,208 @@ if(palabra.length > 2){      $ionicLoading.show();
 })
 
 
+
+
+.controller('ChatsCtrl2', function($scope, api, $ionicLoading, $state ) {
+
+
+  $scope.buscador={};
+
+
+  $scope.filtro={};
+   $scope.usuario={};
+  $scope.cargaTerminada = false;
+
+  $scope.userData = JSON.parse(window.localStorage.getItem('userInfoIF'));
+
+
+
+  $scope.someModelMultiple = [];
+$scope.selectables = [{nombre:'technology', id:1},
+                      {nombre:'sports', id:2},
+                      {nombre:'music', id:3},
+                      {nombre:"men's clothes", id:4},
+                      {nombre:"women's clothing", id:5},
+                      {nombre:'social networking', id:6},
+                      {nombre:'audio', id:7},
+                      {nombre:'video', id:8},
+                      {nombre:'photography', id:9},
+                      {nombre:'movies', id:10},
+                      {nombre:'charity', id:11},
+                      {nombre:'design', id:12},];
+
+
+
+                      $scope.someModelMultiple2 = [];
+$scope.selectables2 = [{nombre:'mostly girls', id:1},
+                      {nombre:'mostly guys', id:2},
+                      {nombre:'young people', id:3},
+                      {nombre:"adults", id:4},
+                      {nombre:"kids", id:5},
+                      {nombre:'old people', id:6}];
+
+
+
+      $scope.getCategorias = function(numero){
+console.log(numero);
+       return numero == 1 ? 'technology' : numero == 2 ? 'sports' : numero == 3 ? 'music' 
+       : numero == 4 ? "men's clothes" : numero == 5 ? "women's clothes" : 
+       numero == 6 ? "social networking" : numero == 7 ? "audio" :  numero == 8 ? "video" :
+       numero == 9 ? "photography" : numero == 10 ? "movies" :  numero == 11 ? "charity" :
+       numero == 12 ? "design" : "";
+
+    
+  }
+
+
+        $scope.buscar = function(numero){
+  
+          console.log($scope.usuario);
+        $ionicLoading.show();
+
+ 
+      api.busquedaAvanzada($scope.usuario).then(function (data) {
+
+        console.log(data.data.users);
+        //data.data.users
+
+        $scope.resultados= data.data.users;
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+
+
+  }
+
+
+    $scope.getCategorias2 = function(numero){
+
+       return numero == 1 ? 'mostly girls' : numero == 2 ? 'mostly guys' : numero == 3 ? 'young people' 
+       : numero == 4 ? "adults" : numero == 5 ? "kids" : 
+       numero == 6 ? "old people" : numero == 7 ? "various" : "";
+
+    
+  }
+
+
+      $scope.seleccionado = function(newValue, oldValue){
+console.log(newValue);
+
+newValue[0] ? $scope.usuario.opcion11 = newValue[0].id : $scope.usuario.opcion11 = undefined;
+newValue[1] ? $scope.usuario.opcion12 = newValue[1].id : $scope.usuario.opcion12 = undefined;
+    //$state.go('instalog');
+  }
+
+
+        $scope.seleccionado2 = function(newValue, oldValue){
+
+          newValue[0] ? $scope.usuario.opcion21 = newValue[0].id : $scope.usuario.opcion21 = undefined;
+          newValue[1] ? $scope.usuario.opcion22 = newValue[1].id : $scope.usuario.opcion22 = undefined;
+
+console.log(newValue)
+    //$state.go('instalog');
+  }
+
+
+
+  $scope.goPerfil = function( idUsuario, tipoCuenta){
+
+  console.log(idUsuario);
+  $state.go('tab.chat-detail', {idUsuario: idUsuario});
+
+  }
+
+  $scope.goPremium = function(){
+
+    $state.go('tab.paymentMethod2');
+  }
+
+
+
+  $scope.verificarSuscripcion = function(palabra){
+console.log('verificarSuscripcion');
+      $ionicLoading.show();
+      api.verificarSuscripcion({idUsuario: $scope.userData.instagramId}).then(function (data) {
+
+        console.log(data);
+        $scope.cargaTerminada = true;
+
+        if(data.data.suscription){
+          $scope.suscripcion = true;
+        }
+        else{
+          $scope.suscripcion = false;
+        }  
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+      
+
+  }
+
+
+  $scope.verificarSuscripcion();
+   //$scope.cargaTerminada = true;
+   //$scope.suscripcion = true;
+
+  $scope.buscarPalabra = function(palabra){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+if(palabra.length > 2){      
+
+      $ionicLoading.show();
+
+ 
+      api.buscarUsuario(palabra).then(function (data) {
+
+        console.log(data.data.users);
+        //data.data.users
+
+        $scope.resultados= data.data.users;
+
+
+        }).finally(function () {
+        $ionicLoading.hide();
+       
+        });
+        }
+
+  }
+
+
+
+    $scope.goFiltro = function(){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+
+
+    $state.go('tab.chat-search');
+
+  }
+
+
+    $scope.listarTodos = function(palabra){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+
+      $ionicLoading.show();
+      api.listarTodos().then(function (data) {
+        $scope.buscador.palabra = '';
+        $scope.resultados= data.data.users;
+        }).finally(function () {
+        $ionicLoading.hide();   
+        });
+        
+
+  }
+
+
+
+
+})
+
 .controller('ChatsCtrl', function($scope, api, $ionicLoading, $state ) {
 
 
@@ -837,7 +1367,9 @@ console.log('verificarSuscripcion');
   }
 
 
-  $scope.verificarSuscripcion();
+  //$scope.verificarSuscripcion();
+   $scope.cargaTerminada = true;
+   $scope.suscripcion = true;
 
   $scope.buscarPalabra = function(palabra){
 //console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
@@ -859,6 +1391,16 @@ if(palabra.length > 2){
        
         });
         }
+
+  }
+
+
+
+    $scope.goFiltro = function(){
+//console.log( $scope.filtro ? $scope.filtro.option1 : 'not defined');
+
+
+    $state.go('tab.chat-search');
 
   }
 
