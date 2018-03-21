@@ -1,0 +1,141 @@
+<style type="text/css">
+    
+    .item-checkbox {
+    background-color: #dfe2e5 ;
+      color:  #0090b4;
+}
+.modalDesignHeader{
+      background-color: #0090b4 ;
+
+      color: white !important;
+}
+
+.modalDesignHeader h1{
+      color: white !important;
+}
+.modalDesign{
+
+    background-color: #dfe2e5 ;
+
+}
+
+
+</style>
+
+
+<ion-view view-title="Welcome, @{{userData.username}}">
+  <ion-content  style="padding:20px;font-family:Lato;    background-color: #5666b8;">
+<div ng-if='cargaTerminada  '>
+
+<div ng-if="suscripcion" style="
+    text-align:  center;
+    padding: 15%;
+    color:  darkgray;
+    font-family: Lato;
+    letter-spacing:  1px;
+    margin-top: 10%;
+">
+    
+    <span style="
+    display: block;
+    font-size:  23px;
+">Do you want to search?</span>
+    <span style="
+    font-size: 17px;
+    margin-top: 20px;
+    display:  block;
+    text-align: center;
+">Advanced search is only available for premium users</span>
+    <button style="
+    margin-top: 25px;
+    font-family:  Lato;
+    background-color:  #0090b4 !important;
+    color:  white;
+    border:  none !important;
+    padding: 10px 35px;
+    font-size:  14px;
+" ng-click='goPremium()'>Get Premium</button>
+</div>
+
+
+
+<div ng-if='!suscripcion'>
+<p style="color:white !important;margin-top:20px;text-align:center; letter-spacing:1px; font-size:16px">search for word</p>
+
+<div style="text-align:center">
+
+    <input style="      width: 70%;
+    border-bottom: solid 3px white!important;
+    border: none;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-family: Lato2;
+    margin-left: 15%;
+    color: white;
+    background: transparent;" type="text" placeholder="enter a word" ng-model="usuario.palabra" >
+
+    </div>
+
+
+
+<div class='ddssd' >
+<span class="spanRegister">
+Add Tag
+</span>
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+
+    <div class="vineta" ng-if='usuario.opcion11'>{{getCategorias(usuario.opcion11)}}</div>
+    <div class="vineta" ng-if='usuario.opcion12'>{{getCategorias(usuario.opcion12)}}</div>
+</div>
+
+<div class='ddssd'>
+<span class="spanRegister">
+Add Tag
+</span>
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple2" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables2" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado2(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+<div class="vineta" ng-if='usuario.opcion21'>{{getCategorias2(usuario.opcion21)}}</div>
+    <div class="vineta" ng-if='usuario.opcion22'>{{getCategorias2(usuario.opcion22)}}</div>
+
+</div>
+
+
+<button class="button-full button" ng-click='buscar()'>Search</button>
+
+
+
+
+  <div  style='    color: white;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    opacity: 0.4;' ng-if='resultados.length == 0 ' >
+
+There are no results in the search . . .
+
+    </div>
+
+<div ng-if='resultados.length > 0 ' >
+<div style="margin-top:20px; width:100%;text-align:center;color:white;font-size:19px">Search results . . . </div>
+    <div class="userResult"  ng-repeat='r in resultados' ng-click='goPerfil(r.instagramId, r.tipoCuenta)'>
+        <img ng-src="{{r.imagen}}"><span style="color:white !important">{{r.username}}</span>
+
+    </div>
+
+</div>
+
+</div>
+
+  </ion-content>
+</ion-view>

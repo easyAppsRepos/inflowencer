@@ -1,3 +1,27 @@
+<style type="text/css">
+    
+    .item-checkbox {
+    background-color: #dfe2e5 ;
+      color:  #0090b4;
+}
+.modalDesignHeader{
+      background-color: #0090b4 ;
+
+      color: white !important;
+}
+
+.modalDesignHeader h1{
+      color: white !important;
+}
+.modalDesign{
+
+    background-color: #dfe2e5 ;
+
+}
+
+
+</style>
+
 <ion-view hide-nav-bar="true">
     <script id="nuevoUsuario.html" type="text/ng-template">
         <ion-modal-view class="ion-nifty-modal2">
@@ -124,7 +148,43 @@
         max-width: 475px;
 "></textarea>
 
-<div class='ddssd' >{{tipoProfile == 1 ? 'I would like to publish...' : 'I search people to publish for...'}} 
+
+<!-- 
+<button class="button button-positive" modal-select="" ng-model="someModelMultiple" options="selectables" multiple="true" modal-title="Select some numbers">
+  Select it
+  <div class="option">
+    {{option}}
+  </div>
+</button>
+<h3>
+  someModelMultiple value: {{someModelMultiple}}
+</h3>
+
+ -->
+
+
+<div class='ddssd' >
+<span class="spanRegister">
+{{tipoProfile == 1 ? 'I would like to publish...' : 'I search people to publish for...'}} 
+</span>
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+
+    <div class="vineta" ng-if='usuario.opcion11'>{{getCategorias(usuario.opcion11)}}</div>
+    <div class="vineta" ng-if='usuario.opcion12'>{{getCategorias(usuario.opcion12)}}</div>
+
+
+
+<!-- 
+selected-class
+
+footer-class
+
+sub-header-class
     <select ng-model='usuario.opcion11'>
         <option value='1'>technology</option>
         <option value='2'>sports</option>
@@ -155,15 +215,31 @@
         <option value='12'>design</option>
     </select>
 
-
+ -->
 
 
 
 </div>
 
 
-<div class='ddssd'>{{tipoProfile == 1 ? 'My audience is...' : 'My target audience...'}}   
-    <select ng-model='usuario.opcion21'>
+<div class='ddssd'>
+<span class="spanRegister">
+{{tipoProfile == 1 ? 'My audience is...' : 'My target audience...'}}
+</span>
+
+
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple2" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables2" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado2(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+<div class="vineta" ng-if='usuario.opcion21'>{{getCategorias2(usuario.opcion21)}}</div>
+    <div class="vineta" ng-if='usuario.opcion22'>{{getCategorias2(usuario.opcion22)}}</div>
+
+
+
+<!--     <select ng-model='usuario.opcion21'>
         <option value='1'>mostly girls</option>
         <option value='2'>mostly guys</option>
         <option value='3'>young people</option>
@@ -182,7 +258,7 @@
         <option value='6'>old people</option>
         <option value='7'>various</option>
     </select>
-
+ -->
 
 </div>
 

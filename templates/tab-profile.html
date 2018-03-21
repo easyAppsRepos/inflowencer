@@ -1,4 +1,32 @@
+
+
+<style type="text/css">
+    
+    .item-checkbox {
+    background-color: #dfe2e5 ;
+      color:  #0090b4;
+}
+.modalDesignHeader{
+      background-color: #0090b4 ;
+
+      color: white !important;
+}
+
+.modalDesignHeader h1{
+      color: white !important;
+}
+.modalDesign{
+
+    background-color: #dfe2e5 ;
+
+}
+
+
+</style>
+
+
 <ion-view view-title="Welcome, @{{userData.username}}">
+
 
   <ion-content class='ttss' style="background-size: cover;background-color:#5666b8" >
 
@@ -19,7 +47,25 @@
     z-index: 30;
     opacity: 0.8;">
  -->
+
+ <button  ng-if='!editar'  style='position: absolute;
+    right: 10px;
+    top: -9px;
+    font-size: 18px;
+    opacity: 0.5;' ng-click='editarPerfil()'  class="dbn"> <i class="icon ion-edit"></i></button>
+
+
+ <button  ng-if='editar' style='    position: absolute;
+    right: 10px;
+    top: -9px;
+    font-size: 20px;
+    opacity: 1;
+    border-width: 3px;' ng-click='guardarPerfil()'  class="dbn"> <i class="icon ion-android-done-all"></i></button>
+
+
 <p style="text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
     color: white;
     font-family: LatoL;
     letter-spacing: 2px;
@@ -71,7 +117,7 @@
 
 
     
- <div style="
+ <div ng-if='!editar'  style="
     text-align: center;
     width: 100%;
     padding: 30px;
@@ -84,6 +130,10 @@
     margin-bottom: 10px;
     line-height: 29px;
 ">@ {{dataUser.username}} - {{dataUser.tipoCuenta == 1 ? 'influencer' : 'store'}}</div>
+        
+
+
+
         <div style="
     width: 100%;
     resize: none;
@@ -122,6 +172,107 @@
 
 
     </div>
+
+ <div ng-if='editar' style="
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+">
+
+
+
+
+        <div style="
+    color: white;
+    font-size: 28px;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    line-height: 29px;
+">@ {{dataUser.username}} - {{dataUser.tipoCuenta == 1 ? 'influencer' : 'store'}}</div>
+
+
+
+        <textarea ng-model='usuario.bio' placeholder="I'm interested in..." style="
+    width: 100%;
+    resize: none;
+    display: flex;
+    height: 107px;
+    background-color: transparent;
+    border: solid 4px white;
+    font-family: LatoL;
+    letter-spacing: 2px;
+    padding: 7px;
+        color: white;
+    font-size: 17px;
+    margin-left: auto;
+    margin-right: auto;
+        max-width: 475px;
+"></textarea>
+
+
+<div class='ddssd' >
+<span class="spanRegister">
+{{tipoProfile == 1 ? 'I would like to publish...' : 'I search people to publish for...'}} 
+</span>
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+
+    <div class="vineta" ng-if='usuario.opcion11'>{{getCategorias(usuario.opcion11)}}</div>
+    <div class="vineta" ng-if='usuario.opcion12'>{{getCategorias(usuario.opcion12)}}</div>
+
+
+</div>
+
+
+<div class='ddssd'>
+<span class="spanRegister">
+{{tipoProfile == 1 ? 'My audience is...' : 'My target audience...'}}
+</span>
+
+
+
+<button  class="btnAddCategoria button button-icon icon ion-ios-plus-empty" modal-select="" ng-model="someModelMultiple2" modal-class="modalDesign" header-footer-class='modalDesignHeader' options="selectables2" multiple="true"  modal-title="Select 2 tags"  on-select="seleccionado2(newValue, oldValue)" >
+  <div class="option" >
+    {{option.nombre}}
+  </div>
+</button>
+<div class="vineta" ng-if='usuario.opcion21'>{{getCategorias2(usuario.opcion21)}}</div>
+    <div class="vineta" ng-if='usuario.opcion22'>{{getCategorias2(usuario.opcion22)}}</div>
+
+
+
+<!--     <select ng-model='usuario.opcion21'>
+        <option value='1'>mostly girls</option>
+        <option value='2'>mostly guys</option>
+        <option value='3'>young people</option>
+        <option value='4'>adults</option>
+        <option value='5'>kids</option>
+        <option value='6'>old people</option>
+        <option value='7'>various</option>
+    </select>
+
+    <select ng-model='usuario.opcion22'>
+       <option value='1'>mostly girls</option>
+        <option value='2'>mostly guys</option>
+        <option value='3'>young people</option>
+        <option value='4'>adults</option>
+        <option value='5'>kids</option>
+        <option value='6'>old people</option>
+        <option value='7'>various</option>
+    </select>
+ -->
+
+</div>
+
+    </div>
+
+
+
 
 </div>
 

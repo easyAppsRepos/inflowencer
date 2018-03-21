@@ -66,6 +66,50 @@
 
 
 
+
+
+
+               <div style="    font-weight: 800;
+    font-size: 16px;
+    border-top: solid 2px #ffffff40;
+    margin-left: 20px;
+    margin-right: 20px;" class="tituloHome">New Influencers - This week</div>
+                        <div class="iList" ng-repeat='i in newInfluencers' ng-click='goPerfil(i.instagramId)'>
+                <span style="
+                   display: inline-block;
+    font-size: 16px;
+    vertical-align: -webkit-baseline-middle;
+                ">{{$index + 1}}.</span>
+                <img ng-src="{{i.imagen}}" style="
+                 
+                display: inline-block;
+                height: 50px;
+                vertical-align: middle;
+                border-radius: 55px;
+                    margin-left: 12px;
+    margin-right: 12px;
+                ">
+                <div style="
+                display: inline-block;
+                vertical-align: middle;
+                text-align: left;
+                    min-width: 155px;
+                ">
+                      <span style="
+                      display: block;
+                          font-size: 16px;
+                              text-decoration: underline;
+                      ">@{{i.username}}</span>
+                      <span style="
+                      display: block;
+                          font-size: 13px;
+                      ">{{i.fechaDife || 0}} days ago</span>
+              
+                </div>
+            </div>
+
+
+
         </div>
 <div style="width:100%;text-align:center">
         <button style='padding: 11px 44px;
@@ -149,6 +193,55 @@
                 </div>
             </div>
 
+
+
+
+               <div style="    font-weight: 800;
+    font-size: 16px;
+    border-top: solid 2px #ffffff40;
+    margin-left: 20px;
+      margin-top: 20px;
+    margin-right: 20px;" class="tituloHome">New Stores - This week</div>
+
+
+            <div class="iList" ng-repeat='i in newStores'  ng-click='goPerfil(i.instagramId)'>
+                <span style="
+                   display: inline-block;
+    font-size: 16px;
+    vertical-align: -webkit-baseline-middle;
+                ">{{$index + 1}}.</span>
+                <img ng-src="{{i.imagen}}" style="
+                 
+                display: inline-block;
+                height: 50px;
+                vertical-align: middle;
+                border-radius: 55px;
+                    margin-left: 12px;
+    margin-right: 12px;
+                ">
+                <div style="
+                display: inline-block;
+                vertical-align: middle;
+                text-align: left;
+                    min-width: 155px;
+                ">
+                      <span style="
+                      display: block;
+                          font-size: 16px;
+                              text-decoration: underline;
+                      ">@{{i.username}}</span>
+                      <span style="
+                      display: block;
+                          font-size: 13px;
+                      ">{{i.fechaDife || 0}} days ago</span>
+
+                                       <span style="
+                      display: inline-block;
+                          font-size: 13px;
+                      "><span ng-if='i.opcion11' class='etiquetaTop'>{{getCategorias(i.opcion11)}}</span><span ng-if='i.opcion12' class='etiquetaTop'  >{{getCategorias(i.opcion12)}}</span></span>
+              
+                </div>
+            </div>
 
 
         </div>

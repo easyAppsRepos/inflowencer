@@ -16,7 +16,7 @@
     font-size: 26px;
     margin-top: 19px;
     font-style:  italic;
-">by <span style="text-decoration:underline">@{{request.usernameStore}}</span></div>
+">by <span  ng-click='goPerfil(request.idStore)' style="text-decoration:underline">@{{request.usernameStore}}</span></div>
 </div>
 
 <div style="  width: 84%;
@@ -135,9 +135,25 @@
     font-family: Lato2;
     font-weight: 800;">
 <span style="padding-left: 10px;
-   ">{{request.estado==0 ? 'Waiting for approval...' : request.estado == 1 ? 'Approved' : request.estado == 2 ? 'Rejected' : request.estado == 3 ? 'Completed' : 'Unknown'}}</span>
+   ">
+
+   {{request.estado==0 ? 'Waiting for approval...' : request.estado == 1 ? 'Approved' : request.estado == 2 ? 'Rejected' : request.estado == 3 ? 'Completed' : 'Unknown'}}
+
+
+   </span>
 <br>
-       <button  ng-if='request.estado==1 && request.idStore == userData.instagramId' ng-if='!mismoUsuario && dataUser.tipoCuenta == 1' style="padding: 7px 30px;
+
+       <button  ng-if='request.estado==0 && request.idStore == userData.instagramId' style="padding: 7px 30px;
+    border: none !important;
+    margin-top: 18px;
+    background-color: #ff5f5f;
+    color: white;
+    font-family: LatoL;
+    font-weight: 800;
+    border-radius: 2px;" ng-click='borrarReq(request.idRequest)'>Cancel request</button>
+
+
+       <button  ng-if='request.estado==1 && request.idStore == userData.instagramId'  style="padding: 7px 30px;
     border: none !important;
     margin-top: 18px;
     background-color: #007eff;
